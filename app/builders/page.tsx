@@ -22,13 +22,19 @@ import PaperCanvas from "@/components/builder/PaperCanvas";
 import QuestionCard from "@/components/builder/QuestionCard";
 
 import { Question } from "@/types/question";
-const [schoolName, setSchoolName] = useState("ABC PUBLIC SCHOOL");
+
+export default function BuildersPage() {
+  const [schoolName, setSchoolName] = useState("ABC PUBLIC SCHOOL");
 const [examName, setExamName] = useState("UNIT TEST - I");
 const [className, setClassName] = useState("Class IX");
 const [subjectName, setSubjectName] = useState("Mathematics");
 const [examDate, setExamDate] = useState("");
-export default function BuildersPage() {
-
+const [instructions, setInstructions] = useState(
+`1. All questions are compulsory.
+2. Read all questions carefully.
+3. Internal choices are provided where applicable.
+4. Show all necessary calculations.`
+);
   const allQuestions =
     getQuestions() as Question[];
 
@@ -46,20 +52,6 @@ const [duration, setDuration] =
 
 const [totalMarks, setTotalMarks] =
   useState(20);
-  const [schoolName, setSchoolName] =
-  useState("ABC Public School");
-
-const [examName, setExamName] =
-  useState("Unit Test - I");
-
-const [className, setClassName] =
-  useState("Class IX");
-const [instructions, setInstructions] = useState(
-`1. All questions are compulsory.
-2. Read all questions carefully.
-3. Internal choices are provided where applicable.
-4. Show all necessary calculations.`
-);
   const [subject, setSubject] =
     useState("All");
 

@@ -17,13 +17,31 @@ interface Props {
     React.SetStateAction<Question | null>
   >;
   orTarget: Question | null;
-}
 
+  template: any;
+  schoolName: string;
+  examName: string;
+  className: string;
+  subjectName: string;
+  examDate: string;
+  duration: string;
+  totalMarks: number;
+  instructions: string;
+}
 export default function PaperCanvas({
   questions,
   removeQuestion,
   setOrTarget,
   orTarget,
+  template,
+  schoolName,
+  examName,
+  className,
+  subjectName,
+  examDate,
+  duration,
+  totalMarks,
+  instructions,
 }: Props) {
   const { isOver, setNodeRef } = useDroppable({
     id: "paper-drop-zone",
@@ -38,9 +56,44 @@ export default function PaperCanvas({
           : "border-gray-300"
       }`}
     >
-      <h2 className="text-2xl font-bold mb-6">
-        Question Paper
-      </h2>
+     <div
+  className="text-center border-b pb-5 mb-6"
+  style={{
+    color: template.headerColor,
+    fontFamily: template.fontFamily,
+  }}
+>
+  <h1
+    style={{
+      fontSize: template.headingFont,
+      fontWeight: "bold",
+    }}
+  >
+    {schoolName}
+  </h1>
+
+  <h2 className="text-xl mt-2">
+    {examName}
+  </h2>
+
+  <p>
+    {className} | {subjectName}
+  </p>
+
+  <p>
+    Date: {examDate || "________"}
+  </p>
+
+  <div className="flex justify-between mt-3 text-black">
+    <span>Duration: {duration}</span>
+
+    <span>Total Marks: {totalMarks}</span>
+  </div>
+
+  <div className="mt-4 text-left whitespace-pre-line text-gray-700">
+    {instructions}
+  </div>
+</div>
 
       {questions.length === 0 && (
         <div className="text-center text-gray-400 mt-24">
@@ -67,10 +120,25 @@ export default function PaperCanvas({
               {/* Header */}
               <div className="flex justify-between items-start gap-4">
                 <div className="flex-1">
-                  <h3 className="font-bold text-lg">
-                    Q{index + 1}. {q.stem}
-                  </h3>
-
+                 <h3
+  style={{
+    fontFamily: template.fontFamily,
+    fontSize: template.questionFont,
+    lineHeight:
+      template.spacing === "compact"
+        ? "1.4"
+        : template.spacing === "normal"
+        ? "1.7"
+        : "2.1",
+  }}
+>
+  <strong>Q{index + 1}.</strong> {q.stem}
+</h3>
+{template.showMarks && (
+  <div className="text-sm text-blue-600 mt-2">
+    Marks: {(q as any).marks ?? (q as any).mark}
+  </div>
+)}
                   <p className="text-sm text-gray-500 mt-1">
                     {q.subject} • {q.chapter.title}
                   </p>
@@ -133,6 +201,15 @@ export default function PaperCanvas({
           </SortableQuestion>
         ))}
       </SortableContext>
+      <hr className="mt-8 mb-3" />
+
+<div className="flex justify-between text-sm text-gray-500">
+  <span>{template.footer}</span>
+
+  {template.showPageNumbers && (
+    <span>Page 1</span>
+  )}
+</div>
     </div>
   );
 }

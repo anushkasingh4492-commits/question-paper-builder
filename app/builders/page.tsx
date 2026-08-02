@@ -19,6 +19,7 @@ const QuestionBuilderClient = dynamic(
   }
 );
 import PaperCanvas from "@/components/builder/PaperCanvas";
+const PaperCanvasAny = PaperCanvas as any;
 import QuestionCard from "@/components/builder/QuestionCard";
 
 import { Question } from "@/types/question";
@@ -35,10 +36,7 @@ const [instructions, setInstructions] = useState(
 3. Internal choices are provided where applicable.
 4. Show all necessary calculations.`
 );
-  const allQuestions =
-    getQuestions() as Question[];
-
-
+const [allQuestions, setAllQuestions] = useState<Question[]>([]);
   const [paperQuestions, setPaperQuestions] =
     useState<Question[]>([]);
 
@@ -84,7 +82,42 @@ console.log("OR TARGET:", orTarget);
   setDuration(preset.duration || "1 Hour");
   setTotalMarks(preset.totalMarks || 80);
 }, []);
+const [template, setTemplate] = useState({
+  schoolName: "ABC Public School",
+  headerColor: "#2563eb",
+  fontFamily: "Times New Roman",
+  questionFont: 14,
+  headingFont: 24,
+  spacing: "normal",
+  margin: "medium",
+  showMarks: true,
+  showPageNumbers: true,
+  footer: "All the Best!"
+});
+useEffect(() => {
+  const all = getQuestions() as Question[];
 
+  const selected = JSON.parse(
+    localStorage.getItem("selectedChapters") || "[]"
+  );
+
+  if (selected.length === 0) {
+    setAllQuestions(all);
+  } else {
+    setAllQuestions(
+      all.filter((q: any) =>
+        selected.includes(q.chapter.title)
+      )
+    );
+  }
+}, []);
+useEffect(() => {
+  const saved = localStorage.getItem("paperTemplate");
+
+  if (saved) {
+    setTemplate(JSON.parse(saved));
+  }
+}, []);
 function addQuestion(question: Question) {
   setPaperQuestions((prev) => {
     console.log("Paper count:", prev.length + 1);
@@ -279,6 +312,21 @@ function handleDragEnd(event: any) {
         questionsPerPage
     );
 
+  const paperCanvasProps = {
+    questions: paperQuestions,
+    removeQuestion,
+    setOrTarget,
+    orTarget,
+    schoolName,
+    examName,
+    className,
+    subjectName,
+    examDate,
+    duration,
+    totalMarks,
+    instructions,
+  } as any;
+
   return (
 
 <DndContext
@@ -419,7 +467,9 @@ onChange={(e)=>setSearch(e.target.value)}
 
 </div>
 
-<QuestionBuilderClient questions={currentQuestions}/>
+<QuestionBuilderClient
+    questions={currentQuestions}
+/>
 
 <div className="flex justify-between items-center mt-6">
 
@@ -470,26 +520,6 @@ Your Paper
 
 <div className="space-y-3 mb-5">
 
-<input
-className="border rounded p-2 w-full"
-placeholder="School Name"
-value={schoolName}
-onChange={(e)=>setSchoolName(e.target.value)}
-/>
-
-<input
-className="border rounded p-2 w-full"
-placeholder="Exam Name"
-value={examName}
-onChange={(e)=>setExamName(e.target.value)}
-/>
-
-<input
-className="border rounded p-2 w-full"
-placeholder="Class"
-value={className}
-onChange={(e)=>setClassName(e.target.value)}
-/>
 <input
   className="border rounded p-2 w-full"
   placeholder="School Name"
@@ -563,6 +593,15 @@ onChange={(e)=>setTotalMarks(Number(e.target.value))}
   removeQuestion={removeQuestion}
   setOrTarget={setOrTarget}
   orTarget={orTarget}
+  schoolName={schoolName}
+  examName={examName}
+  className={className}
+  subjectName={subjectName}
+  examDate={examDate}
+  duration={duration}
+  totalMarks={totalMarks}
+  instructions={instructions}
+  template={template}
 />
 
 </div>
@@ -591,20 +630,21 @@ Save Preset
 <button
   className="w-full bg-green-600 text-white py-3 rounded-lg mt-4"
   onClick={() => {
-    const paper = {
-      id: Date.now(),
-      schoolName,
-      examName,
-      className,
-      subjectName,
-      examDate,
-      title: paperTitle,
-      instructions,
-      time: duration,
-      totalMarks,
-      createdAt: new Date().toLocaleString(),
-      questions: paperQuestions,
-    };
+  const paper = {
+  id: Date.now(),
+  schoolName,
+  examName,
+  className,
+  subjectName,
+  examDate,
+  title: paperTitle,
+  instructions,
+  time: duration,
+  totalMarks,
+  createdAt: new Date().toLocaleString(),
+  template,          // ⭐ Add this line
+  questions: paperQuestions,
+};
 
     localStorage.setItem(
       "paperData",

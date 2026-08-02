@@ -1,185 +1,169 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useState } from "react";
+import Link from "next/link";
+
 import DashboardLayout from "@/components/DashboardLayout";
 import CourseSelector from "@/components/dashboard/CourseSelector";
 import ClassSelector from "@/components/dashboard/ClassSelector";
-import { courses } from "@/lib/courseData";
 import SubjectSelector from "@/components/dashboard/SubjectSelector";
-import Link from "next/link";
+import ChapterSelector from "@/components/dashboard/chapterselector";
+
+import {
+  getBoards,
+  getClasses,
+  getSubjects,
+  getChapters,
+} from "@/lib/dashboard";
 
 export default function Dashboard() {
-  const [selectedCourse, setSelectedCourse] = useState(courses[0].id);
-  const [selectedClass, setSelectedClass] = useState("");
-const [selectedSubject, setSelectedSubject] = useState("");
-  const currentCourse = useMemo(
-    () => courses.find((c) => c.id === selectedCourse),
-    [selectedCourse]
-  );
-  const currentClass = currentCourse?.classes.find(
-    (cls) => cls.name === selectedClass
-  );
+const boards = getBoards() as string[];
+
+const [selectedBoard, setSelectedBoard] = useState(boards[0] ?? "");
+
+const classes = getClasses(selectedBoard) as string[];
+
+const [selectedClass, setSelectedClass] = useState(classes[0] ?? "");
+
+const subjects = getSubjects(selectedBoard, selectedClass) as string[];
+
+const [selectedSubject, setSelectedSubject] = useState(subjects[0] ?? "");
+
+const chapters = getChapters(selectedSubject) as string[];
 
   return (
     <DashboardLayout>
       <div className="space-y-8">
-
         <div>
           <h1 className="text-4xl font-bold">
             Question Paper Builder
           </h1>
 
           <p className="text-gray-500 mt-2">
-            Select a course and class to begin.
+            Select Board, Class, Subject and Chapter.
           </p>
         </div>
 
-        {/* Course */}
+        <div>
+          <h2 className="text-xl font-semibold mb-4">
+            Select Board
+          </h2>
+<CourseSelector
+  courses={boards}
+  selected={selectedBoard}
+  onSelect={(board) => {
+    setSelectedBoard(board);
+
+    const newClasses = getClasses(board) as string[];
+    setSelectedClass(newClasses[0] ?? "");
+    const newSubjects = getSubjects(board, newClasses[0]) as string[];
+    setSelectedSubject(newSubjects[0] ?? "");
+  }}
+/>
+        </div>
 
         <div>
           <h2 className="text-xl font-semibold mb-4">
-            Select Course
+            Select Class
           </h2>
 
-          <CourseSelector
-            selected={selectedCourse}
-            onSelect={(course) => {
-              setSelectedCourse(course);
-              setSelectedClass("");
-            }}
-          />
+          <ClassSelector
+  classes={classes}
+  selected={selectedClass}
+  onSelect={(cls) => {
+    setSelectedClass(cls);
+
+    const newSubjects = getSubjects(selectedBoard, cls) as string[];
+    setSelectedSubject(newSubjects[0] ?? "");
+  }}
+/>
         </div>
 
-        {/* Class */}
+        <div>
+          <h2 className="text-xl font-semibold mb-4">
+            Select Subject
+          </h2>
 
-        {currentCourse && (
-          <div>
-            <h2 className="text-xl font-semibold mb-4">
-              Select Class
-            </h2>
+         <SubjectSelector
+  subjects={subjects}
+  selected={selectedSubject}
+  onSelect={setSelectedSubject}
+/>
+        </div>
 
-            <ClassSelector
-              classes={currentCourse.classes}
-              selected={selectedClass}
-              onSelect={(cls) => {
-                setSelectedClass(cls);
-                setSelectedSubject("");
-              }}
-            />
+        <div>
+          <h2 className="text-xl font-semibold mb-4">
+            Select Chapter
+          </h2>
 
-            {currentClass && (
-              <div>
-                <h2 className="text-xl font-semibold mb-4">
-                  Select Subject
-                </h2>
+          <ChapterSelector chapters={chapters} />
+        </div>
 
-                <SubjectSelector
-                  subjects={currentClass.subjects}
-                  selected={selectedSubject}
-                  onSelect={setSelectedSubject}
-                />
-              </div>
-            )}
-          </div>
-        )}
+        <div>
+          <h2 className="text-xl font-semibold mb-4">
+            Quick Actions
+          </h2>
 
-        {/* Quick Actions */}
-
-        {selectedSubject && (
-          <div>
-            <h2 className="text-xl font-semibold mb-4">
-              Quick Actions
-            </h2>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-4">
 <Link
   href="/create-paper"
   onClick={() => {
-    localStorage.setItem(
-      "selectedCourse",
-      selectedCourse
-    );
-
-    localStorage.setItem(
-      "selectedClass",
-      selectedClass
-    );
-
-    localStorage.setItem(
-      "selectedSubject",
-      selectedSubject
-    );
+    localStorage.setItem("board", selectedBoard);
+    localStorage.setItem("class", selectedClass);
+    localStorage.setItem("subject", selectedSubject);
   }}
   className="border rounded-xl p-6 hover:bg-blue-50"
 >
-                <h3 className="font-bold text-lg">
-                  Create Paper
-                </h3>
+  <h3 className="font-bold text-lg">
+    Create Paper
+  </h3>
 
-                <p className="text-gray-500 mt-2">
-                  Build a new question paper.
-                </p>
-              </Link>
-<Link
-  href="/builders"
-  onClick={() => {
-    localStorage.setItem(
-      "selectedCourse",
-      selectedCourse
-    );
+  <p className="text-gray-500 mt-2">
+    Build a new question paper.
+  </p>
+</Link>
+    
+            <Link
+              href="/builders"
+              className="border rounded-xl p-6 hover:bg-blue-50"
+            >
+              <h3 className="font-bold text-lg">
+                Question Builder
+              </h3>
 
-    localStorage.setItem(
-      "selectedClass",
-      selectedClass
-    );
+              <p className="text-gray-500 mt-2">
+                Drag & Drop Questions
+              </p>
+            </Link>
 
-    localStorage.setItem(
-      "selectedSubject",
-      selectedSubject
-    );
-  }}
->
-                className="border rounded-xl p-6 hover:bg-blue-50"
-              
-                <h3 className="font-bold text-lg">
-                  Question Builder
-                </h3>
+            <Link
+              href="/papers"
+              className="border rounded-xl p-6 hover:bg-blue-50"
+            >
+              <h3 className="font-bold text-lg">
+                Saved Papers
+              </h3>
 
-                <p className="text-gray-500 mt-2">
-                  Drag & drop questions.
-                </p>
-              </Link>
+              <p className="text-gray-500 mt-2">
+                View generated papers.
+              </p>
+            </Link>
 
-              <Link
-                href="/papers"
-                className="border rounded-xl p-6 hover:bg-blue-50"
-              >
-                <h3 className="font-bold text-lg">
-                  Saved Papers
-                </h3>
+            <Link
+              href="/admin/uploads"
+              className="border rounded-xl p-6 hover:bg-blue-50"
+            >
+              <h3 className="font-bold text-lg">
+                Upload Dataset
+              </h3>
 
-                <p className="text-gray-500 mt-2">
-                  View generated papers.
-                </p>
-              </Link>
+              <p className="text-gray-500 mt-2">
+                Upload new question banks.
+              </p>
+            </Link>
 
-              <Link
-                href="/admin"
-                className="border rounded-xl p-6 hover:bg-blue-50"
-              >
-                <h3 className="font-bold text-lg">
-                  Admin
-                </h3>
-
-                <p className="text-gray-500 mt-2">
-                  Manage courses and uploads.
-                </p>
-              </Link>
-
-            </div>
           </div>
-        )}
-
+        </div>
       </div>
     </DashboardLayout>
   );

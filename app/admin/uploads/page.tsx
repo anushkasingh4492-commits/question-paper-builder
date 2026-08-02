@@ -3,9 +3,15 @@
 import DashboardLayout from "@/components/DashboardLayout";
 import { useState } from "react";
 import { validateDataset } from "@/lib/validateDataset";
+import { addDataset } from "@/lib/datasetStore";
+
+
 export default function UploadPage() {
   const [dataset, setDataset] = useState<any>(null);
 const [error, setError] = useState("");
+const [board, setBoard] = useState("");
+const [cls, setCls] = useState("");
+const [subject, setSubject] = useState("");
   return (
     <DashboardLayout>
       <div className="max-w-4xl mx-auto space-y-6">
@@ -25,13 +31,18 @@ const [error, setError] = useState("");
               Board
             </label>
 
-            <select className="border rounded-lg w-full p-3 mt-2">
-              <option>CBSE</option>
-              <option>ICSE</option>
-              <option>Maharashtra</option>
-              <option>JEE</option>
-              <option>NEET</option>
-            </select>
+           <select
+  value={board}
+  onChange={(e) => setBoard(e.target.value)}
+  className="border rounded-lg w-full p-3 mt-2"
+>
+  <option value="">Select Board</option>
+  <option value="CBSE">CBSE</option>
+  <option value="ICSE">ICSE</option>
+  <option value="Maharashtra">Maharashtra</option>
+  <option value="JEE">JEE</option>
+  <option value="NEET">NEET</option>
+</select>
           </div>
 
           <div>
@@ -40,9 +51,10 @@ const [error, setError] = useState("");
             </label>
 
             <input
-              className="border rounded-lg w-full p-3 mt-2"
-              placeholder="Class IX"
-            />
+  value={cls}
+  onChange={(e) => setCls(e.target.value)}
+  className="border rounded-lg w-full p-3 mt-2"
+/>
           </div>
 
           <div>
@@ -51,9 +63,10 @@ const [error, setError] = useState("");
             </label>
 
             <input
-              className="border rounded-lg w-full p-3 mt-2"
-              placeholder="Mathematics"
-            />
+  value={subject}
+  onChange={(e) => setSubject(e.target.value)}
+  className="border rounded-lg w-full p-3 mt-2"
+/>
           </div>
 
           <div>
@@ -74,22 +87,41 @@ const [error, setError] = useState("");
     const reader = new FileReader();
 
     reader.onload = (event) => {
+      console.log("JSON loaded");
+
       try {
-        const json = JSON.parse(
-          event.target?.result as string
-        );
+        const json = JSON.parse(event.target?.result as string);
+        console.log(json);
 
-       const errors = validateDataset(json);
+        const errors = validateDataset(json);
 
-if (errors.length) {
-  setError(errors.join(", "));
-  setDataset(null);
-} else {
-  setError("");
-  setDataset(json);
-}
-        setError("");
+        if (errors.length) {
+          setError(errors.join(", "));
+          setDataset(null);
+        } else {
+          setError("");
+          setDataset(json);
 
+          setBoard(
+            json.board ??
+            json.collection?.curriculum ??
+            ""
+          );
+
+          setCls(
+            json.class ??
+            json.collection?.class?.toString() ??
+            ""
+          );
+
+          setSubject(
+            json.subject ??
+            json.collection?.subject ??
+            ""
+          );
+
+          addDataset(json);
+        }
       } catch {
         setDataset(null);
         setError("Invalid JSON file");
@@ -101,11 +133,27 @@ if (errors.length) {
 />
           </div>
 
-          <button
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg"
-          >
-            Upload Dataset
-          </button>
+         <button
+  className="bg-blue-600 text-white px-6 py-3 rounded-lg"
+  disabled={!dataset}
+  onClick={async () => {
+    const res = await fetch("/api/datasets/upload", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify(dataset),
+    });
+
+    if (res.ok) {
+      alert("Dataset saved successfully!");
+    } else {
+      alert("Upload failed");
+    }
+  }}
+>
+  Upload Dataset
+</button>
 {error && (
   <div className="text-red-600 font-medium">
     {error}

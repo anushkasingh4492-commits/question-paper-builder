@@ -1,5 +1,5 @@
-import courseData from "@/data/json/case_studies_master.json";
 
+import courseData from "@/data/datasets/maths1-8/case_studies_master.json";
 export const courses = [
   {
     id: courseData.board.toLowerCase(),

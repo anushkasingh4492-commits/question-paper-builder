@@ -5,10 +5,12 @@ import QuestionCard from "./QuestionCard";
 
 interface Props {
   questions: Question[];
+  addQuestion: (question: Question) => void;
 }
 
 export default function QuestionBank({
   questions,
+  addQuestion,
 }: Props) {
   return (
     <div>
@@ -21,6 +23,7 @@ export default function QuestionBank({
           <QuestionCard
             key={question.id}
             question={question}
+            addQuestion={addQuestion}
           />
         ))}
       </div>

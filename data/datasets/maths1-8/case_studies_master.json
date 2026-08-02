@@ -1,0 +1,1163 @@
+{
+  "schema_version": "1.0.0",
+  "release_version": "2026.07.22.2",
+  "board": "CBSE",
+  "class": "IX",
+  "subject": "Mathematics",
+  "session": "2026-27",
+  "source_book": "NCERT Ganita Manjari Grade 9 Part I, April 2026",
+  "case_studies_per_chapter": 3,
+  "questions_per_case": 3,
+  "mark_pattern": [
+    1,
+    1,
+    2
+  ],
+  "chapters": [
+    {
+      "chapter": 1,
+      "alias": "Coordinates",
+      "title": "Orienting Yourself: The Use of Coordinates",
+      "source_file": "NCERT/Assets/NCERT Textbook/iemh101.pdf",
+      "cases": [
+        {
+          "id": "MATH9-C01-CS-01",
+          "title": "Heritage Walk on a Coordinate Map",
+          "source_sections": [
+            "1.3 The 2-d Cartesian Coordinate System",
+            "1.4 Distance Between Two Points in the 2-D Plane"
+          ],
+          "passage": "A town council prepares a coordinate map for a heritage walk. The school S is taken as the origin (0, 0). The library L is at (6, 8), the museum M is at (−6, 8), and the clinic C is at (6, 0). One unit on the coordinate grid represents 100 metres. Visitors may walk directly between two places when a straight path is available. Use the map and the distance between two points to answer the questions.",
+          "figure": {
+            "file": "Assets/ch01_case01_coordinate_map.png",
+            "caption": "Figure 1: Coordinate map with grid lines one coordinate unit apart",
+            "alt_text": "A coordinate grid with grid lines one unit apart, S at the origin, L at 6 comma 8, M at minus 6 comma 8, and C at 6 comma 0. Each coordinate unit represents 100 metres."
+          },
+          "questions": [
+            {
+              "id": "MATH9-C01-CS-01-Q1",
+              "text": "In which quadrant is the library L located?",
+              "marks": 1,
+              "answer": "Quadrant I.",
+              "marking_scheme": [
+                "1 mark for Quadrant I."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C01-CS-01-Q2",
+              "text": "How far is the clinic C from the y-axis, in metres?",
+              "marks": 1,
+              "answer": "The distance is |6| = 6 units = 600 metres.",
+              "marking_scheme": [
+                "1 mark for 600 metres."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C01-CS-01-Q3",
+              "text": "Calculate the straight-line distances LM and MS. Give both answers in metres.",
+              "marks": 2,
+              "answer": "LM = |6 − (−6)| = 12 units = 1200 m. MS = √[(−6 − 0)² + (8 − 0)²] = √100 = 10 units = 1000 m.",
+              "marking_scheme": [
+                "1 mark for LM = 1200 m.",
+                "1 mark for MS = 1000 m."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C01-CS-02",
+          "title": "Robot Route on a Game Board",
+          "source_sections": [
+            "1.3 The 2-d Cartesian Coordinate System",
+            "1.4 Distance Between Two Points in the 2-D Plane"
+          ],
+          "passage": "A robot moves on a square game board marked as a coordinate plane. It starts at P(−4, 3), moves vertically to Q(−4, −5), and then moves horizontally to R(2, −5). It can also travel directly from P to R. Each unit on the board represents one metre. The programmer wants to compare the grid route P to Q to R with the direct route P to R.",
+          "figure": {
+            "file": "Assets/ch01_case02_robot_route.png",
+            "caption": "Figure 2: Grid route PQR and direct route PR on a one-unit grid",
+            "alt_text": "A coordinate grid with grid lines one unit apart showing P at minus 4 comma 3, Q at minus 4 comma minus 5, and R at 2 comma minus 5, with segments PQ, QR, and PR. Each coordinate unit represents one metre."
+          },
+          "questions": [
+            {
+              "id": "MATH9-C01-CS-02-Q1",
+              "text": "In which quadrant is point P located?",
+              "marks": 1,
+              "answer": "Quadrant II.",
+              "marking_scheme": [
+                "1 mark for Quadrant II."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C01-CS-02-Q2",
+              "text": "Find the length PQ.",
+              "marks": 1,
+              "answer": "PQ = |3 − (−5)| = 8 m.",
+              "marking_scheme": [
+                "1 mark for 8 m."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C01-CS-02-Q3",
+              "text": "Find the lengths of the grid route PQR and the direct route PR. Which route is shorter?",
+              "marks": 2,
+              "answer": "PQ + QR = 8 + 6 = 14 m. PR = √[(2 + 4)² + (−5 − 3)²] = √(36 + 64) = 10 m. The direct route is shorter by 4 m.",
+              "marking_scheme": [
+                "1 mark for grid route = 14 m.",
+                "1 mark for direct route = 10 m and identifying it as shorter."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C01-CS-03",
+          "title": "Drone Inspection Route",
+          "source_sections": [
+            "1.4 Distance Between Two Points in the 2-D Plane"
+          ],
+          "passage": "A drone inspects three solar towers. The control station W is at (2, 1), tower A is at (5, 5), and tower B is at (8, 1). Coordinates are measured in kilometres. The operator notices that the route from W to A and the route from A to B appear to have the same length. The distance formula can be used to check the observation.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C01-CS-03-Q1",
+              "text": "What is the perpendicular distance of A from the y-axis?",
+              "marks": 1,
+              "answer": "The distance is |5| = 5 km.",
+              "marking_scheme": [
+                "1 mark for 5 km."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C01-CS-03-Q2",
+              "text": "Calculate the distance WA.",
+              "marks": 1,
+              "answer": "WA = √[(5 − 2)² + (5 − 1)²] = √25 = 5 km.",
+              "marking_scheme": [
+                "1 mark for 5 km."
+              ],
+              "difficulty": "Medium"
+            },
+            {
+              "id": "MATH9-C01-CS-03-Q3",
+              "text": "Calculate AB and use the result to explain why triangle WAB is isosceles.",
+              "marks": 2,
+              "answer": "AB = √[(8 − 5)² + (1 − 5)²] = √25 = 5 km. Since WA = AB = 5 km, triangle WAB is isosceles.",
+              "marking_scheme": [
+                "1 mark for AB = 5 km.",
+                "1 mark for concluding WA = AB, so the triangle is isosceles."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 2,
+      "alias": "Linear Polynomials",
+      "title": "Introduction to Linear Polynomials",
+      "source_file": "NCERT/Assets/NCERT Textbook/iemh102.pdf",
+      "cases": [
+        {
+          "id": "MATH9-C02-CS-01",
+          "title": "Growing Mosaic Border",
+          "source_sections": [
+            "2.2 Linear Polynomials",
+            "2.3 Exploring linear patterns"
+          ],
+          "passage": "An art club builds a sequence of square mosaics. At stage n, the border requires T(n) = 4n + 3 blue tiles. The coefficient 4 describes the fixed increase from one stage to the next, while 3 is the constant part of the rule. The club records the number of tiles before ordering material for a large display.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C02-CS-01-Q1",
+              "text": "What is the constant term of the linear polynomial T(n) = 4n + 3?",
+              "marks": 1,
+              "answer": "The constant term is 3.",
+              "marking_scheme": [
+                "1 mark for 3."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C02-CS-01-Q2",
+              "text": "How many blue tiles are required at stage 12?",
+              "marks": 1,
+              "answer": "T(12) = 4(12) + 3 = 51 tiles.",
+              "marking_scheme": [
+                "1 mark for 51 tiles."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C02-CS-01-Q3",
+              "text": "At which stage will the border require 75 blue tiles? Show the equation used.",
+              "marks": 2,
+              "answer": "4n + 3 = 75, so 4n = 72 and n = 18. The border requires 75 tiles at stage 18.",
+              "marking_scheme": [
+                "1 mark for forming 4n + 3 = 75.",
+                "1 mark for n = 18."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C02-CS-02",
+          "title": "Water Tank with Linear Decay",
+          "source_sections": [
+            "2.4 Linear growth and linear decay",
+            "2.5 Linear Relationships"
+          ],
+          "passage": "A laboratory tank initially contains 240 litres of water. A pump removes water at a constant rate of 15 litres per hour. If t is the number of hours for which the pump runs, the volume remaining is V(t) = 240 − 15t litres. The rule is linear because the volume changes by the same amount during each hour.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C02-CS-02-Q1",
+              "text": "What does V(0) represent, and what is its value?",
+              "marks": 1,
+              "answer": "V(0) is the initial volume, equal to 240 litres.",
+              "marking_scheme": [
+                "1 mark for initial volume = 240 litres."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C02-CS-02-Q2",
+              "text": "Find the volume remaining after 6 hours.",
+              "marks": 1,
+              "answer": "V(6) = 240 − 15(6) = 150 litres.",
+              "marking_scheme": [
+                "1 mark for 150 litres."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C02-CS-02-Q3",
+              "text": "After how many hours will 90 litres remain? Also state the hourly rate of change of the volume.",
+              "marks": 2,
+              "answer": "240 − 15t = 90 gives 15t = 150, so t = 10 hours. The rate of change is −15 litres per hour, meaning a decrease of 15 litres each hour.",
+              "marking_scheme": [
+                "1 mark for t = 10 hours.",
+                "1 mark for rate = −15 litres per hour with correct interpretation."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C02-CS-03",
+          "title": "Comparing Two Taxi Plans",
+          "source_sections": [
+            "2.5 Linear Relationships",
+            "2.6 Visualising linear relationships"
+          ],
+          "passage": "Two taxi companies use linear fare rules. Company A charges A(d) = 50 + 12d rupees and Company B charges B(d) = 80 + 8d rupees, where d is the distance in kilometres. The fixed charge is represented by the constant term and the per-kilometre charge by the coefficient of d. A graph of the two rules shows where the fares become equal.",
+          "figure": {
+            "file": "Assets/ch02_case03_taxi_graph.png",
+            "caption": "Figure 3: Fare graphs for Taxi A and Taxi B",
+            "alt_text": "A line graph of fare against distance. Taxi A starts at 50 and rises by 12 per kilometre. Taxi B starts at 80 and rises by 8 per kilometre. The lines meet at 7.5 kilometres and 140 rupees."
+          },
+          "questions": [
+            {
+              "id": "MATH9-C02-CS-03-Q1",
+              "text": "Find Company A's fare for a journey of 5 km.",
+              "marks": 1,
+              "answer": "A(5) = 50 + 12(5) = ₹110.",
+              "marking_scheme": [
+                "1 mark for ₹110."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C02-CS-03-Q2",
+              "text": "In the rule A(d), which quantity is the dependent variable?",
+              "marks": 1,
+              "answer": "The fare A(d) is the dependent variable.",
+              "marking_scheme": [
+                "1 mark for fare or A(d)."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C02-CS-03-Q3",
+              "text": "Find the distance at which the two companies charge the same fare, and calculate that fare.",
+              "marks": 2,
+              "answer": "50 + 12d = 80 + 8d gives 4d = 30, so d = 7.5 km. The common fare is 50 + 12(7.5) = ₹140.",
+              "marking_scheme": [
+                "1 mark for d = 7.5 km.",
+                "1 mark for common fare = ₹140."
+              ],
+              "difficulty": "Hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 3,
+      "alias": "World of Numbers",
+      "title": "The World of Numbers",
+      "source_file": "NCERT/Assets/NCERT Textbook/iemh103.pdf",
+      "cases": [
+        {
+          "id": "MATH9-C03-CS-01",
+          "title": "Temperature Changes at a Hill Station",
+          "source_sections": [
+            "3.3 Integers: Expanding the Horizon",
+            "3.4 Filling the Spaces: Fractions and Rational Numbers"
+          ],
+          "passage": "At sunrise, the temperature at a hill station was −4°C. By noon it rose by 7.5°C. During the afternoon it fell by 3.25°C. These changes can be represented by adding positive and negative rational numbers. The weather station records both the final temperature and the net change from sunrise.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C03-CS-01-Q1",
+              "text": "What was the temperature at noon?",
+              "marks": 1,
+              "answer": "−4 + 7.5 = 3.5°C.",
+              "marking_scheme": [
+                "1 mark for 3.5°C."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C03-CS-01-Q2",
+              "text": "What was the temperature after the afternoon fall?",
+              "marks": 1,
+              "answer": "3.5 − 3.25 = 0.25°C.",
+              "marking_scheme": [
+                "1 mark for 0.25°C."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C03-CS-01-Q3",
+              "text": "Calculate the net change from sunrise to the final reading and verify it using the two recorded changes.",
+              "marks": 2,
+              "answer": "Final minus initial = 0.25 − (−4) = 4.25°C. Also, 7.5 + (−3.25) = 4.25°C, so the values agree.",
+              "marking_scheme": [
+                "1 mark for net change = 4.25°C.",
+                "1 mark for verification using 7.5 − 3.25 = 4.25°C."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C03-CS-02",
+          "title": "Ribbons of Rational Length",
+          "source_sections": [
+            "3.4 Filling the Spaces: Fractions and Rational Numbers",
+            "3.4.2 The Density of Rational Numbers"
+          ],
+          "passage": "A craft teacher cuts three ribbons of lengths 3/4 m, 5/6 m, and 7/8 m. The class compares the rational lengths and then uses the average of two lengths to locate another rational number between them. All three pieces are cut from a roll that was initially 3 m long.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C03-CS-02-Q1",
+              "text": "Which of the three ribbon pieces is the longest?",
+              "marks": 1,
+              "answer": "7/8 m is the longest.",
+              "marking_scheme": [
+                "1 mark for 7/8 m."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C03-CS-02-Q2",
+              "text": "Find the rational number obtained by averaging 3/4 and 5/6.",
+              "marks": 1,
+              "answer": "[(3/4) + (5/6)]/2 = (19/12)/2 = 19/24.",
+              "marking_scheme": [
+                "1 mark for 19/24."
+              ],
+              "difficulty": "Medium"
+            },
+            {
+              "id": "MATH9-C03-CS-02-Q3",
+              "text": "Find the total length used and the length remaining from the 3 m roll.",
+              "marks": 2,
+              "answer": "Total used = 3/4 + 5/6 + 7/8 = 18/24 + 20/24 + 21/24 = 59/24 m. Remaining = 3 − 59/24 = 72/24 − 59/24 = 13/24 m.",
+              "marking_scheme": [
+                "1 mark for total used = 59/24 m.",
+                "1 mark for remaining length = 13/24 m."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C03-CS-03",
+          "title": "Classifying Digital Number Displays",
+          "source_sections": [
+            "3.5 Irrational Numbers",
+            "3.6 Real Numbers: Decimals and Cyclic Patterns"
+          ],
+          "passage": "A digital exhibit displays four real numbers: A = 0.375, B = 0.272727..., C = √2, and D = 1.01001000100001..., where the number of zeros between successive 1s keeps increasing. The exhibit asks visitors to classify decimal expansions as terminating, non-terminating repeating, or non-terminating non-repeating.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C03-CS-03-Q1",
+              "text": "Which displayed number is a terminating decimal?",
+              "marks": 1,
+              "answer": "A = 0.375.",
+              "marking_scheme": [
+                "1 mark for A or 0.375."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C03-CS-03-Q2",
+              "text": "Which displayed number is non-terminating and repeating?",
+              "marks": 1,
+              "answer": "B = 0.272727....",
+              "marking_scheme": [
+                "1 mark for B or 0.272727...."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C03-CS-03-Q3",
+              "text": "Classify C and D as rational or irrational, giving one reason for each classification.",
+              "marks": 2,
+              "answer": "C = √2 is irrational. D is also irrational because its decimal expansion neither terminates nor repeats a fixed block.",
+              "marking_scheme": [
+                "1 mark for correctly classifying √2 as irrational.",
+                "1 mark for classifying D as irrational with the non-terminating, non-repeating reason."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 4,
+      "alias": "Algebraic Identities",
+      "title": "Exploring Algebraic Identities",
+      "source_file": "NCERT/Assets/NCERT Textbook/iemh104.pdf",
+      "cases": [
+        {
+          "id": "MATH9-C04-CS-01",
+          "title": "Expanding a Square Courtyard",
+          "source_sections": [
+            "4.2 Visualising Identities",
+            "4.4 More Identities"
+          ],
+          "passage": "A square courtyard originally has side x metres. A 4 m wide extension is added along one side and another 4 m wide extension along the adjacent side, producing a larger square of side (x + 4) metres. The area model separates the new square into an x by x square, two rectangles of area 4x, and a 4 by 4 square.",
+          "figure": {
+            "file": "Assets/ch04_case01_area_model.png",
+            "caption": "Figure 4: Schematic area model for (x + 4)², not to scale",
+            "alt_text": "A schematic square of side x plus 4 divided into an x by x square, two x by 4 rectangles, and one 4 by 4 square. The drawing is not to scale because x is unspecified."
+          },
+          "questions": [
+            {
+              "id": "MATH9-C04-CS-01-Q1",
+              "text": "Write the expanded area of the larger square.",
+              "marks": 1,
+              "answer": "(x + 4)² = x² + 8x + 16.",
+              "marking_scheme": [
+                "1 mark for x² + 8x + 16."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C04-CS-01-Q2",
+              "text": "Name the algebraic identity used in the expansion.",
+              "marks": 1,
+              "answer": "(a + b)² = a² + 2ab + b².",
+              "marking_scheme": [
+                "1 mark for the correct identity."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C04-CS-01-Q3",
+              "text": "If x = 6 m, find the area of the larger courtyard and the increase over the original area.",
+              "marks": 2,
+              "answer": "Larger area = (6 + 4)² = 100 m². Original area = 6² = 36 m², so the increase is 64 m².",
+              "marking_scheme": [
+                "1 mark for larger area = 100 m².",
+                "1 mark for increase = 64 m²."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C04-CS-02",
+          "title": "Factoring a Rectangular Garden",
+          "source_sections": [
+            "4.3 Factorisation of Algebraic Expressions Using Identities",
+            "4.5 Factorisation Using Algebra Tiles",
+            "4.6 Factorisation Without Using Algebra Tiles"
+          ],
+          "passage": "A rectangular garden has area x² + 7x + 12 square metres. To recover possible expressions for its length and breadth, the gardener looks for two numbers whose product is 12 and whose sum is 7. This converts the area polynomial into a product of two linear factors.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C04-CS-02-Q1",
+              "text": "Which two positive integers have product 12 and sum 7?",
+              "marks": 1,
+              "answer": "3 and 4.",
+              "marking_scheme": [
+                "1 mark for 3 and 4."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C04-CS-02-Q2",
+              "text": "Factorise x² + 7x + 12.",
+              "marks": 1,
+              "answer": "x² + 7x + 12 = (x + 3)(x + 4).",
+              "marking_scheme": [
+                "1 mark for (x + 3)(x + 4)."
+              ],
+              "difficulty": "Medium"
+            },
+            {
+              "id": "MATH9-C04-CS-02-Q3",
+              "text": "For x = 5 m, find the garden's dimensions and perimeter.",
+              "marks": 2,
+              "answer": "Dimensions are x + 3 = 8 m and x + 4 = 9 m. Perimeter = 2(8 + 9) = 34 m.",
+              "marking_scheme": [
+                "1 mark for dimensions 8 m and 9 m.",
+                "1 mark for perimeter = 34 m."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C04-CS-03",
+          "title": "Square Frame and Difference of Squares",
+          "source_sections": [
+            "4.4 More Identities",
+            "4.6 Factorisation Without Using Algebra Tiles"
+          ],
+          "passage": "A square solar panel of side a metres has a smaller square opening of side b metres cut from it. The usable material has area a² − b² square metres. The manufacturer uses the difference-of-squares identity to calculate the area quickly from the sum and difference of the two side lengths.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C04-CS-03-Q1",
+              "text": "Factorise a² − b².",
+              "marks": 1,
+              "answer": "a² − b² = (a − b)(a + b).",
+              "marking_scheme": [
+                "1 mark for (a − b)(a + b)."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C04-CS-03-Q2",
+              "text": "Find the usable area when a = 12 m and b = 8 m.",
+              "marks": 1,
+              "answer": "12² − 8² = 144 − 64 = 80 m².",
+              "marking_scheme": [
+                "1 mark for 80 m²."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C04-CS-03-Q3",
+              "text": "If a − b = 2 m and a + b = 18 m, find the usable area and the values of a and b.",
+              "marks": 2,
+              "answer": "Usable area = (a − b)(a + b) = 2 × 18 = 36 m². Solving a − b = 2 and a + b = 18 gives a = 10 m and b = 8 m.",
+              "marking_scheme": [
+                "1 mark for usable area = 36 m².",
+                "1 mark for a = 10 m and b = 8 m."
+              ],
+              "difficulty": "Hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 5,
+      "alias": "Circles",
+      "title": "I'm Up and Down, and Round and Round",
+      "source_file": "NCERT/Assets/NCERT Textbook/iemh105.pdf",
+      "cases": [
+        {
+          "id": "MATH9-C05-CS-01",
+          "title": "A Chord in a Circular Window",
+          "source_sections": [
+            "5.3 How Many Circles?",
+            "5.5 Midpoints and Perpendicular Bisectors of Chords",
+            "5.6 Distance of Chords from the Centre"
+          ],
+          "passage": "A circular window has centre O and radius 10 cm. A supporting bar forms chord AB. The perpendicular OM from the centre to the chord is 6 cm long. A perpendicular drawn from the centre of a circle to a chord bisects the chord, so M is the midpoint of AB. Triangle OMA is right-angled at M.",
+          "figure": {
+            "file": "Assets/ch05_case01_chord.png",
+            "caption": "Figure 5: Chord AB with OM perpendicular to AB",
+            "alt_text": "A circle with centre O, horizontal chord AB, midpoint M on the chord, and perpendicular segment OM. Radius OA is 10 centimetres and OM is 6 centimetres."
+          },
+          "questions": [
+            {
+              "id": "MATH9-C05-CS-01-Q1",
+              "text": "What relation holds between AM and MB?",
+              "marks": 1,
+              "answer": "AM = MB.",
+              "marking_scheme": [
+                "1 mark for AM = MB."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C05-CS-01-Q2",
+              "text": "At which point is triangle OMA right-angled?",
+              "marks": 1,
+              "answer": "Triangle OMA is right-angled at M.",
+              "marking_scheme": [
+                "1 mark for M."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C05-CS-01-Q3",
+              "text": "Calculate the length of chord AB.",
+              "marks": 2,
+              "answer": "AM = √(OA² − OM²) = √(10² − 6²) = √64 = 8 cm. Since M bisects AB, AB = 2 × 8 = 16 cm.",
+              "marking_scheme": [
+                "1 mark for AM = 8 cm.",
+                "1 mark for AB = 16 cm."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C05-CS-02",
+          "title": "Equal Chords in a Circular Stage",
+          "source_sections": [
+            "5.4 Chords and the Angles They Subtend",
+            "5.6 Distance of Chords from the Centre"
+          ],
+          "passage": "Two equal lighting bars AB and CD are installed as chords of the same circular stage. Each chord is 5 m from the centre O, and the stage has radius 13 m. Equal chords of the same circle are equidistant from the centre and subtend equal angles at the centre. A perpendicular from O to either chord bisects it.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C05-CS-02-Q1",
+              "text": "How do the angles subtended by AB and CD at O compare?",
+              "marks": 1,
+              "answer": "The angles are equal.",
+              "marking_scheme": [
+                "1 mark for equal angles."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C05-CS-02-Q2",
+              "text": "What is the distance of chord CD from O?",
+              "marks": 1,
+              "answer": "5 m.",
+              "marking_scheme": [
+                "1 mark for 5 m."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C05-CS-02-Q3",
+              "text": "Calculate the length of each chord.",
+              "marks": 2,
+              "answer": "Half-chord = √(13² − 5²) = √144 = 12 m. Therefore, each chord is 2 × 12 = 24 m long.",
+              "marking_scheme": [
+                "1 mark for half-chord = 12 m.",
+                "1 mark for chord length = 24 m."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C05-CS-03",
+          "title": "Four Sensors on a Circular Track",
+          "source_sections": [
+            "5.7 Angles Subtended by an Arc",
+            "5.8 Concyclicity of Points"
+          ],
+          "passage": "Four sensors A, B, C, and D lie on the same circular track in that order. Chords AB, BC, CD, and DA form a cyclic quadrilateral. The measured angles are ∠BAD = 72° and ∠ABD = 45°. Opposite angles of a cyclic quadrilateral are supplementary, and angles standing on the same chord are equal.",
+          "figure": {
+            "file": "Assets/ch05_case03_cyclic_quadrilateral.png",
+            "caption": "Figure 6: Cyclic quadrilateral ABCD",
+            "alt_text": "A circle containing four points A, B, C, and D joined to form a cyclic quadrilateral, with diagonal BD shown. The diagram is constructed so that angle BAD is 72 degrees and angle ABD is 45 degrees, and both angles are labelled."
+          },
+          "questions": [
+            {
+              "id": "MATH9-C05-CS-03-Q1",
+              "text": "Find ∠BCD, the angle opposite ∠BAD.",
+              "marks": 1,
+              "answer": "∠BCD = 180° − 72° = 108°.",
+              "marking_scheme": [
+                "1 mark for 108°."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C05-CS-03-Q2",
+              "text": "Find ∠ACD if both ∠ABD and ∠ACD stand on chord AD.",
+              "marks": 1,
+              "answer": "∠ACD = ∠ABD = 45°.",
+              "marking_scheme": [
+                "1 mark for 45°."
+              ],
+              "difficulty": "Medium"
+            },
+            {
+              "id": "MATH9-C05-CS-03-Q3",
+              "text": "Find ∠ADB and hence find ∠ACB, which stands on chord AB.",
+              "marks": 2,
+              "answer": "In triangle ABD, ∠ADB = 180° − 72° − 45° = 63°. Since ∠ADB and ∠ACB stand on chord AB, ∠ACB = 63°.",
+              "marking_scheme": [
+                "1 mark for ∠ADB = 63°.",
+                "1 mark for ∠ACB = 63°."
+              ],
+              "difficulty": "Hard"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 6,
+      "alias": "Perimeter and Area",
+      "title": "Measuring Space: Perimeter and Area",
+      "source_file": "NCERT/Assets/NCERT Textbook/iemh106.pdf",
+      "cases": [
+        {
+          "id": "MATH9-C06-CS-01",
+          "title": "Repairing a Circular Running Track",
+          "source_sections": [
+            "6.2 Perimeter of a Circle",
+            "6.4 Length of an Arc of a Circle",
+            "6.10.1 Area of Sector of a Circle"
+          ],
+          "passage": "A circular running track has radius 14 m. A 90° sector of the inner field is closed for repair. The school uses π = 22/7 for all calculations. The repair boundary includes the quarter-circle arc, and the grounds team also wants the area of the closed sector.",
+          "figure": {
+            "file": "Assets/ch06_case01_sector.png",
+            "caption": "Figure 7: A 90 degree sector in a circle of radius 14 m",
+            "alt_text": "A circle of radius 14 metres with a shaded sector measuring 90 degrees."
+          },
+          "questions": [
+            {
+              "id": "MATH9-C06-CS-01-Q1",
+              "text": "Find the circumference of the track.",
+              "marks": 1,
+              "answer": "2πr = 2 × 22/7 × 14 = 88 m.",
+              "marking_scheme": [
+                "1 mark for 88 m."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C06-CS-01-Q2",
+              "text": "Find the length of the 90° arc.",
+              "marks": 1,
+              "answer": "90/360 × 88 = 22 m.",
+              "marking_scheme": [
+                "1 mark for 22 m."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C06-CS-01-Q3",
+              "text": "Find the area of the closed sector and the area of the remaining part of the circular field.",
+              "marks": 2,
+              "answer": "Sector area = 90/360 × 22/7 × 14² = 154 m². Total circle area = 616 m², so remaining area = 616 − 154 = 462 m².",
+              "marking_scheme": [
+                "1 mark for sector area = 154 m².",
+                "1 mark for remaining area = 462 m²."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C06-CS-02",
+          "title": "Grass for a Triangular Plot",
+          "source_sections": [
+            "6.8 Area of a Triangle",
+            "6.8.1 Heron's formula"
+          ],
+          "passage": "A triangular plot has side lengths 13 m, 14 m, and 15 m. Since its height is not given directly, the landscape team uses Heron's formula. Grass is to be laid over the entire plot at ₹50 per square metre. The semiperimeter is denoted by s.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C06-CS-02-Q1",
+              "text": "Find the semiperimeter s of the plot.",
+              "marks": 1,
+              "answer": "s = (13 + 14 + 15)/2 = 21 m.",
+              "marking_scheme": [
+                "1 mark for 21 m."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C06-CS-02-Q2",
+              "text": "Write the numerical expression under the square root in Heron's formula.",
+              "marks": 1,
+              "answer": "s(s − a)(s − b)(s − c) = 21 × 8 × 7 × 6 = 7056.",
+              "marking_scheme": [
+                "1 mark for 21 × 8 × 7 × 6 or 7056."
+              ],
+              "difficulty": "Medium"
+            },
+            {
+              "id": "MATH9-C06-CS-02-Q3",
+              "text": "Find the area of the plot and the total cost of laying grass.",
+              "marks": 2,
+              "answer": "Area = √7056 = 84 m². Cost = 84 × ₹50 = ₹4200.",
+              "marking_scheme": [
+                "1 mark for area = 84 m².",
+                "1 mark for cost = ₹4200."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C06-CS-03",
+          "title": "A Stadium-Shaped Walking Path",
+          "source_sections": [
+            "6.1 Perimeter of a Shape",
+            "6.2 Perimeter of a Circle"
+          ],
+          "passage": "A walking path is shaped like a rectangle 28 m long and 14 m wide, with a semicircle attached at each shorter end. Each semicircle has diameter 14 m, and together the two semicircles form one complete circle. Use π = 22/7. Only the outside boundary is counted when finding the perimeter.",
+          "figure": {
+            "file": "Assets/ch06_case03_stadium.png",
+            "caption": "Figure 8: Stadium shape formed by a rectangle and two semicircles",
+            "alt_text": "A rectangle 28 metres long and 14 metres wide with a semicircle of diameter 14 metres attached to each shorter side."
+          },
+          "questions": [
+            {
+              "id": "MATH9-C06-CS-03-Q1",
+              "text": "What is the radius of each semicircular end?",
+              "marks": 1,
+              "answer": "Radius = 14/2 = 7 m.",
+              "marking_scheme": [
+                "1 mark for 7 m."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C06-CS-03-Q2",
+              "text": "What is the total length of the two straight parts of the boundary?",
+              "marks": 1,
+              "answer": "2 × 28 = 56 m.",
+              "marking_scheme": [
+                "1 mark for 56 m."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C06-CS-03-Q3",
+              "text": "Calculate the complete outside perimeter of the path.",
+              "marks": 2,
+              "answer": "The two semicircles form a circle of radius 7 m, whose circumference is 2 × 22/7 × 7 = 44 m. Total perimeter = 56 + 44 = 100 m.",
+              "marking_scheme": [
+                "1 mark for curved boundary = 44 m.",
+                "1 mark for total perimeter = 100 m."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 7,
+      "alias": "Probability",
+      "title": "The Mathematics of Maybe: Introduction to Probability",
+      "source_file": "NCERT/Assets/NCERT Textbook/iemh107.pdf",
+      "cases": [
+        {
+          "id": "MATH9-C07-CS-01",
+          "title": "Testing a Die",
+          "source_sections": [
+            "7.2.1 Experimental Probability",
+            "7.2.2 Theoretical Probability"
+          ],
+          "passage": "Students roll a fair die 120 times. The observed frequencies for faces 1 to 6 are 18, 22, 19, 21, 17, and 23 respectively. Experimental probability is calculated from observed frequency, while theoretical probability for a fair die is based on six equally likely outcomes. The class compares the two types of probability.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C07-CS-01-Q1",
+              "text": "Find the experimental probability of obtaining a 6.",
+              "marks": 1,
+              "answer": "P(6) = 23/120.",
+              "marking_scheme": [
+                "1 mark for 23/120."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C07-CS-01-Q2",
+              "text": "Find the theoretical probability of obtaining an even number.",
+              "marks": 1,
+              "answer": "P(even) = 3/6 = 1/2.",
+              "marking_scheme": [
+                "1 mark for 1/2."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C07-CS-01-Q3",
+              "text": "Find the experimental probability of an even number and compare it with the theoretical probability.",
+              "marks": 2,
+              "answer": "Even outcomes occurred 22 + 21 + 23 = 66 times, so experimental P(even) = 66/120 = 0.55. The theoretical value is 0.50, so the experimental value is greater by 0.05.",
+              "marking_scheme": [
+                "1 mark for experimental probability = 66/120 = 0.55.",
+                "1 mark for comparison with 0.50 and difference 0.05."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C07-CS-02",
+          "title": "Colour Spinner at a School Fair",
+          "source_sections": [
+            "7.1.2 The Probability Scale",
+            "7.2.2 Theoretical Probability",
+            "7.3.2 Events"
+          ],
+          "passage": "A fair spinner is divided into eight equal sectors. Three sectors are red, two are blue, two are green, and one is yellow. Because the sectors are equal, each sector is equally likely. A colour event may contain one sector or several sectors, so its probability is the number of favourable sectors divided by eight.",
+          "figure": {
+            "file": "Assets/ch07_case02_spinner.png",
+            "caption": "Figure 9: Spinner with eight equal colour-labelled sectors",
+            "alt_text": "A circular spinner divided into eight equal sectors labelled R, R, R, B, B, G, G, and Y."
+          },
+          "questions": [
+            {
+              "id": "MATH9-C07-CS-02-Q1",
+              "text": "Find the probability of landing on yellow.",
+              "marks": 1,
+              "answer": "P(yellow) = 1/8.",
+              "marking_scheme": [
+                "1 mark for 1/8."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C07-CS-02-Q2",
+              "text": "Find the probability of not landing on red.",
+              "marks": 1,
+              "answer": "P(not red) = 5/8.",
+              "marking_scheme": [
+                "1 mark for 5/8."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C07-CS-02-Q3",
+              "text": "Blue and green are grouped as cool colours. Compare the probability of a cool colour with the probability of red.",
+              "marks": 2,
+              "answer": "P(cool) = (2 + 2)/8 = 4/8 = 1/2. P(red) = 3/8. A cool colour is more likely by 1/2 − 3/8 = 1/8.",
+              "marking_scheme": [
+                "1 mark for P(cool) = 1/2 and P(red) = 3/8.",
+                "1 mark for stating cool is more likely by 1/8."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C07-CS-03",
+          "title": "Two-Coin Tree Diagram",
+          "source_sections": [
+            "7.3.1 Sample Space",
+            "7.3.2 Events",
+            "7.4 Tree diagrams"
+          ],
+          "passage": "Two fair coins are tossed one after the other. A tree diagram records H or T for the first toss and then H or T for the second toss. The four terminal outcomes are equally likely. The diagram can be used to identify events such as exactly one head or at least one head.",
+          "figure": {
+            "file": "Assets/ch07_case03_coin_tree.png",
+            "caption": "Figure 10: Tree diagram for two successive coin tosses",
+            "alt_text": "A probability tree branching from the first toss to H and T, and from each branch to H and T, ending at HH, HT, TH, and TT."
+          },
+          "questions": [
+            {
+              "id": "MATH9-C07-CS-03-Q1",
+              "text": "Write the sample space for the experiment.",
+              "marks": 1,
+              "answer": "S = {HH, HT, TH, TT}.",
+              "marking_scheme": [
+                "1 mark for all four outcomes."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C07-CS-03-Q2",
+              "text": "Find the probability of obtaining exactly one head.",
+              "marks": 1,
+              "answer": "The favourable outcomes are HT and TH, so P(exactly one head) = 2/4 = 1/2.",
+              "marking_scheme": [
+                "1 mark for 1/2."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C07-CS-03-Q3",
+              "text": "Find the probability of obtaining at least one head and explain how the tree diagram supports the result.",
+              "marks": 2,
+              "answer": "The outcomes with at least one head are HH, HT, and TH. Thus P(at least one head) = 3/4. The tree shows these as three of the four equally likely terminal branches.",
+              "marking_scheme": [
+                "1 mark for identifying HH, HT, and TH.",
+                "1 mark for probability = 3/4 with reference to three of four branches."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "chapter": 8,
+      "alias": "Sequences and Progressions",
+      "title": "Predicting What Comes Next: Exploring Sequences and Progressions",
+      "source_file": "NCERT/Assets/NCERT Textbook/iemh108.pdf",
+      "cases": [
+        {
+          "id": "MATH9-C08-CS-01",
+          "title": "Seats in an Auditorium",
+          "source_sections": [
+            "8.2 Explicit Rule for a Sequence",
+            "8.4 Arithmetic Progressions"
+          ],
+          "passage": "An auditorium has 18 seats in the first row. Each new row has four more seats than the row before it. The numbers of seats form the arithmetic progression 18, 22, 26, 30, and so on. The first term is 18 and the common difference is 4.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C08-CS-01-Q1",
+              "text": "What is the common difference of the progression?",
+              "marks": 1,
+              "answer": "The common difference is 4.",
+              "marking_scheme": [
+                "1 mark for 4."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C08-CS-01-Q2",
+              "text": "How many seats are in the fifth row?",
+              "marks": 1,
+              "answer": "t₅ = 18 + 4(5 − 1) = 34 seats.",
+              "marking_scheme": [
+                "1 mark for 34 seats."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C08-CS-01-Q3",
+              "text": "Write an explicit rule for the number of seats in row n and use it to find the number of seats in row 20.",
+              "marks": 2,
+              "answer": "tₙ = 18 + 4(n − 1) = 4n + 14. Therefore, t₂₀ = 4(20) + 14 = 94 seats.",
+              "marking_scheme": [
+                "1 mark for tₙ = 4n + 14.",
+                "1 mark for t₂₀ = 94 seats."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C08-CS-02",
+          "title": "Branching Plant Pattern",
+          "source_sections": [
+            "8.2 Explicit Rule for a Sequence",
+            "8.6 Geometric Progressions"
+          ],
+          "passage": "A computer model begins with 2 branches at Stage 1. At every new stage, each branch is replaced by three branches, so the total number of branches triples and the counts are 2, 6, 18, 54, and so on. The sequence is a geometric progression because the ratio of each term to the preceding term is constant.",
+          "figure": null,
+          "questions": [
+            {
+              "id": "MATH9-C08-CS-02-Q1",
+              "text": "What is the common ratio of the progression?",
+              "marks": 1,
+              "answer": "The common ratio is 3.",
+              "marking_scheme": [
+                "1 mark for 3."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C08-CS-02-Q2",
+              "text": "How many branches are present at Stage 4?",
+              "marks": 1,
+              "answer": "Stage 4 has 54 branches.",
+              "marking_scheme": [
+                "1 mark for 54."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C08-CS-02-Q3",
+              "text": "Write an explicit rule for the number of branches at Stage n and use it to find the Stage 5 count.",
+              "marks": 2,
+              "answer": "tₙ = 2 × 3^(n − 1). Thus t₅ = 2 × 3⁴ = 162 branches.",
+              "marking_scheme": [
+                "1 mark for tₙ = 2 × 3^(n − 1).",
+                "1 mark for t₅ = 162."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        },
+        {
+          "id": "MATH9-C08-CS-03",
+          "title": "Triangular Tile Displays",
+          "source_sections": [
+            "8.1 Introduction to Sequences",
+            "8.2 Explicit Rule for a Sequence",
+            "8.5 Sum of the First n Natural Numbers"
+          ],
+          "passage": "An exhibition arranges circular tiles in triangular patterns. Stage 1 has 1 tile, Stage 2 has 3 tiles, Stage 3 has 6 tiles, and Stage 4 has 10 tiles. At Stage n, the number of tiles is the sum 1 + 2 + ... + n, so Tₙ = n(n + 1)/2. Each new stage adds one more row than the previous stage.",
+          "figure": {
+            "file": "Assets/ch08_case03_triangular_tiles.png",
+            "caption": "Figure 11: The first four triangular tile patterns",
+            "alt_text": "Four triangular dot patterns containing 1, 3, 6, and 10 tiles at Stages 1, 2, 3, and 4."
+          },
+          "questions": [
+            {
+              "id": "MATH9-C08-CS-03-Q1",
+              "text": "How many tiles are in Stage 5?",
+              "marks": 1,
+              "answer": "T₅ = 5 × 6/2 = 15 tiles.",
+              "marking_scheme": [
+                "1 mark for 15 tiles."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C08-CS-03-Q2",
+              "text": "How many new tiles are added when moving from Stage 4 to Stage 5?",
+              "marks": 1,
+              "answer": "15 − 10 = 5 new tiles.",
+              "marking_scheme": [
+                "1 mark for 5 tiles."
+              ],
+              "difficulty": "Easy"
+            },
+            {
+              "id": "MATH9-C08-CS-03-Q3",
+              "text": "Find the number of tiles in Stage 10 and state the recursive relation connecting consecutive triangular numbers.",
+              "marks": 2,
+              "answer": "T₁₀ = 10 × 11/2 = 55. The recursive relation is Tₙ = Tₙ₋₁ + n, with T₁ = 1.",
+              "marking_scheme": [
+                "1 mark for T₁₀ = 55.",
+                "1 mark for Tₙ = Tₙ₋₁ + n with initial term."
+              ],
+              "difficulty": "Medium"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

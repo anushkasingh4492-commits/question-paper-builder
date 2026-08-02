@@ -1,13 +1,13 @@
 "use client";
 
-import { courses } from "@/lib/courseData";
-
 interface Props {
+  courses: string[];
   selected: string;
   onSelect: (course: string) => void;
 }
 
 export default function CourseSelector({
+  courses,
   selected,
   onSelect,
 }: Props) {
@@ -15,16 +15,16 @@ export default function CourseSelector({
     <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
       {courses.map((course) => (
         <button
-          key={course.id}
-          onClick={() => onSelect(course.id)}
+          key={course}
+          onClick={() => onSelect(course)}
           className={`rounded-xl border p-5 transition-all ${
-            selected === course.id
+            selected === course
               ? "bg-blue-600 text-white"
               : "bg-white hover:bg-gray-100"
           }`}
         >
           <h2 className="font-bold text-lg">
-            {course.name}
+            {course}
           </h2>
         </button>
       ))}

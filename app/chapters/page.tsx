@@ -8,7 +8,19 @@ import { useRouter } from "next/navigation";
 export default function ChaptersPage() {
   const router = useRouter();
 
-  const questions = getQuestions();
+  const allQuestions = getQuestions();
+
+const storedSelectedChapters =
+  typeof window !== "undefined"
+    ? JSON.parse(localStorage.getItem("selectedChapters") || "[]")
+    : [];
+
+const questions =
+  storedSelectedChapters.length === 0
+    ? allQuestions
+    : allQuestions.filter((q: any) =>
+        storedSelectedChapters.includes(q.chapter.title)
+      );
 
   // Filters
   const [board, setBoard] = useState("");
@@ -16,7 +28,13 @@ export default function ChaptersPage() {
   const [subject, setSubject] = useState("");
 
   // Selected Chapters
-  const [selectedChapters, setSelectedChapters] = useState<string[]>([]);
+const [selectedChapters, setSelectedChapters] = useState<string[]>(
+  typeof window !== "undefined"
+    ? JSON.parse(
+        localStorage.getItem("selectedChapters") || "[]"
+      )
+    : []
+);
 
   // ---------------- Boards ----------------
 
@@ -183,13 +201,19 @@ export default function ChaptersPage() {
             Selected : {selectedChapters.length}
           </div>
 
-          <button
-            onClick={() => router.push("/builders")}
-            className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700"
-          >
-            Continue →
-          </button>
+<button
+  onClick={() => {
+    localStorage.setItem(
+      "selectedChapters",
+      JSON.stringify(selectedChapters)
+    );
 
+    router.push("/builders");
+  }}
+  className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700"
+>
+  Continue →
+</button>
         </div>
 
       </div>

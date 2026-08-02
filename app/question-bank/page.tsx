@@ -7,24 +7,20 @@ import { questionBankData } from "@/lib/questionBankData";
 
 export default function QuestionBankPage() {
   const [course, setCourse] = useState("cbse");
-  const [className, setClassName] = useState("9th");
+const [className, setClassName] = useState("");
   const [subject, setSubject] = useState("");
 
   const classes = useMemo(() => {
     return courses.find((c) => c.id === course)?.classes || [];
   }, [course]);
 
-  const subjects = useMemo(() => {
-    const data =
-      questionBankData[
-        course as keyof typeof questionBankData
-      ];
+const subjects = useMemo(() => {
+  const selectedClass = classes.find(
+    (c) => c.name === className
+  );
 
-    return Object.keys(
-      data?.[className as keyof typeof data] || {}
-    );
-  }, [course, className]);
-
+  return selectedClass?.subjects || [];
+}, [classes, className]);
  const data: any = questionBankData;
 
 const chapters: string[] =
@@ -64,8 +60,10 @@ const chapters: string[] =
             }}
           >
             {classes.map((c) => (
-              <option key={c}>{c}</option>
-            ))}
+  <option key={c.name} value={c.name}>
+    {c.name}
+  </option>
+))}
           </select>
 
           <select

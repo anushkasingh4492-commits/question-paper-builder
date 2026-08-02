@@ -1,17 +1,8 @@
 "use client";
 
 import DashboardLayout from "@/components/DashboardLayout";
-
-const datasets = [
-  {
-    board: "CBSE",
-    class: "IX",
-    subject: "Mathematics",
-    questions: 3592,
-    updated: "30 Jul 2026",
-  },
-];
-
+import { getDatasets } from "@/lib/datasetStore";
+const datasets = getDatasets();
 export default function DatasetPage() {
   return (
     <DashboardLayout>
@@ -49,39 +40,58 @@ export default function DatasetPage() {
 
           </thead>
 
-          <tbody>
+         <tbody>
+  {datasets.length === 0 ? (
+    <tr>
+      <td
+        colSpan={6}
+        className="p-6 text-center text-gray-500"
+      >
+        No datasets uploaded yet.
+      </td>
+    </tr>
+  ) : (
+    datasets.map((d, index) => (
+      <tr key={index} className="border-t">
 
-            {datasets.map((d, i) => (
+        <td className="p-3">
+          {d.board || d.collection?.curriculum}
+        </td>
 
-              <tr key={i} className="border-t">
+        <td className="p-3">
+          {d.class || d.collection?.class}
+        </td>
 
-                <td className="p-3">{d.board}</td>
+        <td className="p-3">
+          {d.subject || d.collection?.subject}
+        </td>
 
-                <td className="p-3">{d.class}</td>
+        <td className="p-3">
+          {d.record_count ??
+            d.records?.length ??
+            0}
+        </td>
 
-                <td className="p-3">{d.subject}</td>
+        <td className="p-3">
+          {d.generated_on || "-"}
+        </td>
 
-                <td className="p-3">{d.questions}</td>
+        <td className="p-3 space-x-2">
 
-                <td className="p-3">{d.updated}</td>
+          <button className="px-3 py-1 bg-blue-600 text-white rounded">
+            View
+          </button>
 
-                <td className="p-3 space-x-2">
+          <button className="px-3 py-1 bg-red-600 text-white rounded">
+            Delete
+          </button>
 
-                  <button className="px-3 py-1 bg-blue-600 text-white rounded">
-                    View
-                  </button>
+        </td>
 
-                  <button className="px-3 py-1 bg-red-600 text-white rounded">
-                    Delete
-                  </button>
-
-                </td>
-
-              </tr>
-
-            ))}
-
-          </tbody>
+      </tr>
+    ))
+  )}
+</tbody>
 
         </table>
 

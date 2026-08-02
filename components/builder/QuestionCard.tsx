@@ -6,9 +6,12 @@ import { Question } from "@/types/question";
 
 interface Props {
   question: Question;
+  addQuestion?: (question: Question) => void;
 }
-
-export default function QuestionCard({ question }: Props) {
+export default function QuestionCard({
+  question,
+  addQuestion,
+}: Props) {
   const {
     attributes,
     listeners,
@@ -33,14 +36,34 @@ export default function QuestionCard({ question }: Props) {
       {...attributes}
       className="border rounded-xl bg-white p-4 shadow-sm cursor-grab active:cursor-grabbing hover:shadow-md transition"
     >
-      <div className="flex justify-between items-center">
-        <div className="text-xs text-gray-500">
-          {question.subject} • Chapter {question.chapter.number}
-        </div>
+  <div className="flex justify-between items-center">
 
-        <span className="text-lg">☰</span>
-      </div>
+  <div className="text-xs text-gray-500">
+    {question.subject} • Chapter {question.chapter.number}
+  </div>
 
+  <div className="flex items-center gap-2">
+
+    {addQuestion && (
+      <button
+        onPointerDown={(e) => e.stopPropagation()}
+        onClick={(e) => {
+          e.stopPropagation();
+          addQuestion(question);
+        }}
+        className="w-8 h-8 rounded-full bg-green-600 hover:bg-green-700 text-white font-bold"
+      >
+        +
+      </button>
+    )}
+
+    <span className="text-lg cursor-grab">
+      ☰
+    </span>
+
+  </div>
+
+</div>
       <h3 className="font-semibold mt-3">
         {question.stem}
       </h3>

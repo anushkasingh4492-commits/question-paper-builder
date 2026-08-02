@@ -1,7 +1,17 @@
 "use client";
 
+
 import { useEffect, useState } from "react";
 import jsPDF from "jspdf";
+import { saveAs } from "file-saver";
+import { defaultTemplate } from "@/lib/defaultTemplate";
+import {
+  Document,
+  Packer,
+  Paragraph,
+  TextRun,
+  HeadingLevel,
+} from "docx";
 
 interface Question {
   id: string;
@@ -22,23 +32,37 @@ interface Question {
   };
 }
 
-
 interface PaperData {
   schoolName: string;
   examName: string;
   className: string;
-subjectName: string;
-examDate: string;
+  subjectName: string;
+  examDate: string;
 
   title: string;
   time: string;
   totalMarks: number;
-instructions: string;
+  instructions: string;
+
+  template: {
+    schoolName: string;
+    headerColor: string;
+    fontFamily: string;
+    questionFont: number;
+    headingFont: number;
+    spacing: string;
+    margin: string;
+    showMarks: boolean;
+    showPageNumbers: boolean;
+    footer: string;
+  };
+
   questions: Question[];
 }
 
 export default function PreviewPage() {
   const [paper, setPaper] = useState<PaperData | null>(null);
+  const template = paper?.template ?? defaultTemplate;
 
   useEffect(() => {
     const data = localStorage.getItem("paperData");
@@ -53,20 +77,66 @@ export default function PreviewPage() {
 
     const pdf = new jsPDF();
 
-    pdf.setFontSize(18);
-    pdf.text(paper.title, 20, 20);
+pdf.setFont("times", "bold");
 
-    pdf.setFontSize(12);
-    pdf.text(`Time: ${paper.time}`, 20, 35);
-    pdf.text(`Maximum Marks: ${paper.totalMarks}`, 20, 45);
+pdf.setFontSize(template.headingFont);
 
-    let y = 60;
+pdf.text(
+  paper.schoolName,
+  105,
+  20,
+  { align: "center" }
+);
+
+pdf.setFontSize(18);
+
+pdf.text(
+  paper.examName,
+  105,
+  30,
+  { align: "center" }
+);
+
+pdf.setFontSize(12);
+
+pdf.text(
+  `${paper.className} | ${paper.subjectName}`,
+  105,
+  40,
+  { align: "center" }
+);
+
+pdf.text(
+  `Date : ${paper.examDate}`,
+  20,
+  50
+);
+
+pdf.text(
+  `Time : ${paper.time}`,
+  20,
+  58
+);
+
+pdf.text(
+  `Maximum Marks : ${paper.totalMarks}`,
+  140,
+  58
+);
+
+pdf.line(20,65,190,65);
+
+    let y = 75;
 
     paper.questions.forEach((q, index) => {
       pdf.text(`${index + 1}. ${q.stem}`, 20, y);
 
-      y += 8;
-
+     y +=
+template.spacing === "compact"
+? 6
+: template.spacing === "normal"
+? 9
+: 12;
       q.options.forEach((option) => {
         pdf.text(`${option.id}. ${option.text}`, 30, y);
         y += 7;
@@ -82,7 +152,154 @@ export default function PreviewPage() {
 
     pdf.save(`${paper.title}.pdf`);
   };
+const downloadDOCX = async () => {
+  if (!paper) return;
 
+  const children: Paragraph[] = [];
+
+  // Header
+  children.push(
+    new Paragraph({
+      heading: HeadingLevel.TITLE,
+      children: [
+        new TextRun({
+          text: paper.schoolName,
+          bold: true,
+          size: 36,
+        }),
+      ],
+    })
+  );
+
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: paper.examName,
+          bold: true,
+          size: 28,
+        }),
+      ],
+    })
+  );
+
+  children.push(
+    new Paragraph({
+      text: `${paper.className} | ${paper.subjectName}`,
+    })
+  );
+
+  children.push(
+    new Paragraph({
+      text: `Date: ${paper.examDate}`,
+    })
+  );
+
+  children.push(
+    new Paragraph({
+      text: `Time: ${paper.time}     Maximum Marks: ${paper.totalMarks}`,
+    })
+  );
+
+  children.push(new Paragraph(""));
+
+  children.push(
+    new Paragraph({
+      children: [
+        new TextRun({
+          text: "General Instructions",
+          bold: true,
+        }),
+      ],
+    })
+  );
+
+  paper.instructions.split("\n").forEach((line) => {
+    children.push(
+      new Paragraph({
+        text: line,
+      })
+    );
+  });
+
+  children.push(new Paragraph(""));
+
+  // Questions
+  paper.questions.forEach((q, index) => {
+    children.push(
+      new Paragraph({
+        children: [
+          new TextRun({
+            text: `${index + 1}. ${q.stem}`,
+            bold: true,
+          }),
+        ],
+      })
+    );
+
+    q.options.forEach((option) => {
+      children.push(
+        new Paragraph({
+          text: `${option.id}. ${option.text}`,
+        })
+      );
+    });
+
+    if (q.orQuestions?.length) {
+      children.push(
+        new Paragraph({
+          children: [
+            new TextRun({
+              text: "OR",
+              bold: true,
+            }),
+          ],
+        })
+      );
+
+      q.orQuestions.forEach((orQ) => {
+        children.push(
+          new Paragraph({
+            children: [
+              new TextRun({
+                text: orQ.stem,
+                bold: true,
+              }),
+            ],
+          })
+        );
+
+        orQ.options.forEach((option) => {
+          children.push(
+            new Paragraph({
+              text: `${option.id}. ${option.text}`,
+            })
+          );
+        });
+      });
+    }
+
+    children.push(new Paragraph(""));
+  });
+
+  children.push(
+    new Paragraph({
+      text: paper.template?.footer || "All the Best!",
+    })
+  );
+
+  const doc = new Document({
+    sections: [
+      {
+        children,
+      },
+    ],
+  });
+
+  const blob = await Packer.toBlob(doc);
+
+  saveAs(blob, `${paper.title}.docx`);
+};
   const downloadAnswerKey = () => {
     if (!paper) return;
 
@@ -100,7 +317,26 @@ export default function PreviewPage() {
         ? `${q.answer.option_id}. ${q.answer.text}`
         : "Answer not available";
 
-      pdf.text(`${index + 1}. ${answer}`, 20, y);
+  pdf.setFontSize(
+  template.questionFont
+);
+
+pdf.setFont("times","normal");
+
+pdf.text(
+  `${index + 1}. ${q.stem}`,
+  20,
+  y
+);
+if (template.showMarks) {
+  pdf.setFontSize(10);
+
+  pdf.text(
+    `(${q.marks} Marks)`,
+    170,
+    y
+  );
+}
 
       y += 10;
 
@@ -109,7 +345,25 @@ export default function PreviewPage() {
         y = 20;
       }
     });
+pdf.setFontSize(10);
 
+pdf.line(20,280,190,280);
+
+pdf.text(
+  template.footer,
+  20,
+  287
+);
+
+if (template.showPageNumbers) {
+
+  pdf.text(
+    "Page 1",
+    170,
+    287
+  );
+
+}
     pdf.save(`${paper.title}-Answer-Key.pdf`);
   };
 
@@ -125,35 +379,46 @@ export default function PreviewPage() {
   <div className="max-w-4xl mx-auto p-10 bg-white">
 
     {/* Header */}
-    <div className="text-center border-b pb-6">
-      <h1 className="text-3xl font-bold">
-        {paper.schoolName}
-      </h1>
+    <div
+  className="border-b pb-6 text-center"
+  style={{
+    color: template.headerColor,
+    fontFamily: template.fontFamily,
+  }}
+>
+  <h1
+    style={{
+      fontSize: template.headingFont,
+      fontWeight: "bold",
+    }}
+  >
+    {paper.schoolName}
+  </h1>
 
-      <p className="text-xl mt-2">
-        {paper.examName}
-      </p>
+  <p className="text-xl mt-2">
+    {paper.examName}
+  </p>
 
-      <p className="mt-2">
-        {paper.className}
-      </p>
+  <p>
+    {paper.className}
+  </p>
 
-      <p>
-        Subject: {paper.subjectName}
-      </p>
+  <p>
+    Subject : {paper.subjectName}
+  </p>
 
-      <p>
-        Date: {paper.examDate}
-      </p>
+  <p>
+    Date : {paper.examDate}
+  </p>
 
-      <p>
-        Time: {paper.time}
-      </p>
+  <div className="flex justify-between mt-4">
+    <span>Time : {paper.time}</span>
 
-      <p>
-        Maximum Marks: {paper.totalMarks}
-      </p>
-    </div>
+    <span>
+      Maximum Marks : {paper.totalMarks}
+    </span>
+  </div>
+</div>
 
     {/* Name */}
     <div className="flex justify-between mt-8 mb-8">
@@ -192,9 +457,30 @@ export default function PreviewPage() {
         key={q.id}
         className="mb-8 border rounded-lg p-4"
       >
-        <p className="font-semibold">
-          {index + 1}. {q.stem}
-        </p>
+<div
+  style={{
+    fontFamily: template.fontFamily,
+    fontSize: template.questionFont,
+    lineHeight:
+      template.spacing === "compact"
+        ? "1.4"
+        : template.spacing === "normal"
+        ? "1.7"
+        : "2.1",
+  }}
+>
+  <div className="flex justify-between items-start">
+    <p>
+      {index + 1}. {q.stem}
+    </p>
+
+    {template.showMarks && (
+      <span className="text-blue-600 font-medium">
+        {q.marks} Marks
+      </span>
+    )}
+  </div>
+</div>
 
         <div className="mt-3 ml-4 space-y-2">
           {q.options.map((option) => (
@@ -232,7 +518,19 @@ export default function PreviewPage() {
         ) : null}
       </div>
     ))}
+<hr className="mt-10 mb-4" />
 
+<div className="flex justify-between text-gray-500">
+
+  <span>
+    {template.footer}
+  </span>
+
+  {template.showPageNumbers && (
+    <span>Page 1</span>
+  )}
+
+</div>
     {/* Buttons */}
     <div className="flex gap-4 mt-8">
       <button
@@ -255,6 +553,26 @@ export default function PreviewPage() {
       >
         Download Answer Key
       </button>
+      <button
+  onClick={downloadDOCX}
+  className="bg-blue-800 text-white px-5 py-2 rounded"
+>
+  Download DOCX
+</button>
+      <button
+  onClick={() => {
+    setPaper((prev) =>
+      prev ? { ...prev, template: defaultTemplate } : prev
+    );
+    localStorage.setItem(
+      "paperTemplate",
+      JSON.stringify(defaultTemplate)
+    );
+  }}
+  className="bg-gray-500 text-white px-6 py-3 rounded-lg"
+>
+  Reset to Default
+</button>
     </div>
 
   </div>

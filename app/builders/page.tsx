@@ -1,8 +1,7 @@
 "use client";
-import { arrayMove } from "@dnd-kit/sortable";
+
 import { useEffect, useMemo, useState } from "react";
 import DashboardLayout from "@/components/DashboardLayout";
-
 import { getQuestions } from "@/lib/loader";
 
 import {
@@ -11,18 +10,24 @@ import {
   closestCenter,
 } from "@dnd-kit/core";
 
-import dynamic from "next/dynamic";
-const QuestionBuilderClient = dynamic(
-  () => import("@/components/builder/QuestionBuilderClient"),
-  {
-    ssr: false,
-  }
-);
+import QuestionBuilderClient from "@/components/builder/QuestionBuilderClient";
 import PaperCanvas from "@/components/builder/PaperCanvas";
-const PaperCanvasAny = PaperCanvas as any;
 import QuestionCard from "@/components/builder/QuestionCard";
 
 import { Question } from "@/types/question";
+
+const PaperCanvasAny = PaperCanvas as any;
+
+// lightweight replacement for arrayMove from @dnd-kit/sortable
+function arrayMove<T>(array: T[], from: number, to: number) {
+  const newArray = array.slice();
+  if (from < 0) from = newArray.length + from;
+  if (to < 0) to = newArray.length + to;
+  if (from >= newArray.length) return newArray;
+  const item = newArray.splice(from, 1)[0];
+  newArray.splice(to, 0, item);
+  return newArray;
+}
 
 export default function BuildersPage() {
   const [schoolName, setSchoolName] = useState("ABC PUBLIC SCHOOL");

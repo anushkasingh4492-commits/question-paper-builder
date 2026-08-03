@@ -469,8 +469,8 @@ onChange={(e)=>setSearch(e.target.value)}
 
 <QuestionBuilderClient
     questions={currentQuestions}
+    addQuestion={() => {}}
 />
-
 <div className="flex justify-between items-center mt-6">
 
 <button

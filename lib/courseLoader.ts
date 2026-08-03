@@ -1,8 +1,10 @@
-import courseData from "@/data/json/case_studies_master.json";
+import courseData from "@/data/datasets/maths1-8/case_studies_master.json";
 
 export function getCourseData() {
   return courseData;
 }
+
+
 
 export function getBoards() {
   return [courseData.board];

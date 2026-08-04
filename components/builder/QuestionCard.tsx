@@ -5,9 +5,10 @@ import { CSS } from "@dnd-kit/utilities";
 import { Question } from "@/types/question";
 
 interface Props {
-  question: Question;
+  question: any;
   addQuestion?: (question: Question) => void;
 }
+
 export default function QuestionCard({
   question,
   addQuestion,
@@ -28,6 +29,17 @@ export default function QuestionCard({
     transform: CSS.Transform.toString(transform),
   };
 
+  const title =
+    question.stem ||
+    question.question ||
+    question.assertion ||
+    "Question";
+
+  const options =
+    question.options ||
+    question.choices ||
+    [];
+
   return (
     <div
       ref={setNodeRef}
@@ -36,45 +48,45 @@ export default function QuestionCard({
       {...attributes}
       className="border rounded-xl bg-white p-4 shadow-sm cursor-grab active:cursor-grabbing hover:shadow-md transition"
     >
-  <div className="flex justify-between items-center">
+      <div className="flex justify-between items-center">
+        <div className="text-xs text-gray-500">
+          {question.subject || "Unknown"} •{" "}
+          Chapter {question.chapter?.number ?? "-"}
+        </div>
 
-  <div className="text-xs text-gray-500">
-    {question.subject} • Chapter {question.chapter.number}
-  </div>
+        <div className="flex items-center gap-2">
+          {addQuestion && (
+            <button
+              onPointerDown={(e) => e.stopPropagation()}
+              onClick={(e) => {
+                e.stopPropagation();
+                addQuestion(question);
+              }}
+              className="w-8 h-8 rounded-full bg-green-600 hover:bg-green-700 text-white font-bold"
+            >
+              +
+            </button>
+          )}
 
-  <div className="flex items-center gap-2">
+          <span className="text-lg cursor-grab">☰</span>
+        </div>
+      </div>
 
-    {addQuestion && (
-      <button
-        onPointerDown={(e) => e.stopPropagation()}
-        onClick={(e) => {
-          e.stopPropagation();
-          addQuestion(question);
-        }}
-        className="w-8 h-8 rounded-full bg-green-600 hover:bg-green-700 text-white font-bold"
-      >
-        +
-      </button>
-    )}
-
-    <span className="text-lg cursor-grab">
-      ☰
-    </span>
-
-  </div>
-
-</div>
       <h3 className="font-semibold mt-3">
-        {question.stem}
+        {title}
       </h3>
 
-      <div className="mt-3 space-y-1">
-        {question.options.map((option) => (
-          <p key={option.id}>
-            {option.id}. {option.text}
-          </p>
-        ))}
-      </div>
+      {options.length > 0 && (
+        <div className="mt-3 space-y-1">
+          {options.map((option: any, index: number) => (
+            <p key={index}>
+              {(option.id || option.label || String.fromCharCode(65 + index))}.
+              {" "}
+              {option.text || option}
+            </p>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

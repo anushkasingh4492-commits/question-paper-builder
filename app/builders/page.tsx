@@ -123,6 +123,7 @@ useEffect(() => {
     setTemplate(JSON.parse(saved));
   }
 }, []);
+const [questionType, setQuestionType] = useState("All");
 function addQuestion(question: Question) {
   setPaperQuestions((prev) => {
     console.log("Paper count:", prev.length + 1);
@@ -268,6 +269,16 @@ function handleDragEnd(event: any) {
     "Medium",
     "Hard",
   ];
+  const questionTypes = [
+  "All",
+  ...Array.from(
+    new Set(
+      allQuestions
+        .map((q: any) => q.type)
+        .filter(Boolean)
+    )
+  ),
+];
     const filteredQuestions = useMemo(() => {
 
     return allQuestions.filter((q) =>
@@ -286,10 +297,15 @@ function handleDragEnd(event: any) {
         q.difficulty === difficulty)
 
       &&
+(questionType === "All" ||
+ ( (q as any).type === questionType))
 
-      q.stem
-        .toLowerCase()
-        .includes(search.toLowerCase())
+&&
+
+((q as any).stem || "")
+  .toLowerCase()
+  .includes(search.toLowerCase())
+
 
     );
 
@@ -299,6 +315,7 @@ function handleDragEnd(event: any) {
     chapter,
     difficulty,
     search,
+    questionType,
   ]);
 
   const totalPages = Math.ceil(
@@ -389,15 +406,10 @@ setPage(1);
 }}
 
 >
-
-{subjects.map(s=>(
-
-<option key={s}>
-
-{s}
-
-</option>
-
+{subjects.map((s, index) => (
+  <option key={`${s}-${index}`} value={s}>
+    {s}
+  </option>
 ))}
 
 </select>
@@ -418,16 +430,32 @@ setPage(1);
 
 >
 
-{chapters.map(c=>(
-
-<option key={c}>
-
-{c}
-
-</option>
-
+{chapters.map((c, index) => (
+  <option
+    key={`${c}-${index}`}
+    value={c}
+  >
+    {c}
+  </option>
 ))}
 
+</select>
+<select
+  className="border rounded p-2"
+  value={questionType}
+  onChange={(e) => {
+    setQuestionType(e.target.value);
+    setPage(1);
+  }}
+>
+  {questionTypes.map((t, index) => (
+    <option
+      key={`${t}-${index}`}
+      value={t}
+    >
+      {t}
+    </option>
+  ))}
 </select>
 
 <select
@@ -446,14 +474,13 @@ setPage(1);
 
 >
 
-{difficulties.map(d=>(
-
-<option key={d}>
-
-{d}
-
-</option>
-
+{difficulties.map((d, index) => (
+  <option
+    key={`${d}-${index}`}
+    value={d}
+  >
+    {d}
+  </option>
 ))}
 
 </select>

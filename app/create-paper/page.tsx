@@ -51,16 +51,17 @@ export default function CreatePaper() {
   }, [questions]);
 
 
-
-  const classes = useMemo(() => {
-
-    return [
-      ...new Set(
-        questions.map((q:any)=>q.class)
+const classes = Array.from(
+  new Set(
+    questions
+      .map((q: any) => q.class)
+      .filter(
+        (c) => c !== undefined && c !== null && c !== ""
       )
-    ];
+  )
+);
 
-  }, [questions]);
+
 
 
 
@@ -160,7 +161,7 @@ export default function CreatePaper() {
   };
 
 
-
+console.log(classes);
 
   return (
 
@@ -209,13 +210,11 @@ export default function CreatePaper() {
 
 
               {
-                boards.map((b:any)=>(
-
-                  <option key={b}>
-                    {b}
-                  </option>
-
-                ))
+              boards.map((b: any, index: number) => (
+  <option key={`${b}-${index}`} value={b}>
+    {b}
+  </option>
+))
               }
 
 
@@ -253,16 +252,14 @@ export default function CreatePaper() {
               </option>
 
 
+              
               {
-                classes.map((c:any)=>(
-
-                  <option key={c}>
-                    {c}
-                  </option>
-
-                ))
-              }
-
+  [...new Set(classes)].map((c: any) => (
+    <option key={c} value={c}>
+      {c}
+    </option>
+  ))
+}
 
             </select>
 
@@ -300,15 +297,15 @@ export default function CreatePaper() {
               </option>
 
 
-              {
-                subjects.map((s:any)=>(
-
-                  <option key={s}>
-                    {s}
-                  </option>
-
-                ))
-              }
+              
+               {
+  [...new Set(subjects)].map((s: any) => (
+    <option key={s} value={s}>
+      {s}
+    </option>
+  ))
+}
+              
 
 
             </select>
@@ -468,51 +465,23 @@ export default function CreatePaper() {
 
 
           <div className="grid grid-cols-3 gap-3">
-
-
             {
-              chapters.map((chapter:any)=>(
-
-
+              [...new Set(chapters)].map((chapter: any) => (
                 <div
-
                   key={chapter}
-
-                  onClick={()=>
-                    toggleChapter(chapter)
-                  }
-
-
+                  onClick={() => toggleChapter(chapter)}
                   className={`
                     border rounded-lg p-3 cursor-pointer transition
-
-                    ${
-                      selectedChapters.includes(chapter)
-
-                      ?
-
-                      "bg-blue-600 text-white"
-
-                      :
-
-                      "bg-gray-50 hover:bg-blue-50"
-
+                    ${selectedChapters.includes(chapter)
+                      ? "bg-blue-600 text-white"
+                      : "bg-gray-50 hover:bg-blue-50"
                     }
-
                   `}
-
                 >
-
                   {chapter}
-
-
                 </div>
-
-
               ))
             }
-
-
           </div>
 
 

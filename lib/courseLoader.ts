@@ -7,7 +7,7 @@ export function getCourseData() {
 
 
 export function getBoards() {
-  return [courseData.board];
+  return [courseData.course];
 }
 
 export function getClasses() {

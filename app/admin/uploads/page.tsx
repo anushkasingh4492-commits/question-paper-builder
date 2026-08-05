@@ -9,7 +9,7 @@ import { addDataset } from "@/lib/datasetStore";
 export default function UploadPage() {
   const [dataset, setDataset] = useState<any>(null);
 const [error, setError] = useState("");
-const [board, setBoard] = useState("");
+const [course, setBoard] = useState("");
 const [cls, setCls] = useState("");
 const [subject, setSubject] = useState("");
   return (
@@ -21,22 +21,22 @@ const [subject, setSubject] = useState("");
         </h1>
 
         <p className="text-gray-500">
-          Upload JSON question banks for any board, class and subject.
+          Upload JSON question banks for any course, class and subject.
         </p>
 
         <div className="border rounded-xl p-6 space-y-5">
 
           <div>
             <label className="font-medium">
-              Board
+              course
             </label>
 
            <select
-  value={board}
+  value={course}
   onChange={(e) => setBoard(e.target.value)}
   className="border rounded-lg w-full p-3 mt-2"
 >
-  <option value="">Select Board</option>
+  <option value="">Select course</option>
   <option value="CBSE">CBSE</option>
   <option value="ICSE">ICSE</option>
   <option value="Maharashtra">Maharashtra</option>
@@ -103,7 +103,7 @@ const [subject, setSubject] = useState("");
           setDataset(json);
 
           setBoard(
-            json.board ??
+            json.course ??
             json.collection?.curriculum ??
             ""
           );
@@ -172,8 +172,8 @@ const [subject, setSubject] = useState("");
     </p>
 
     <p>
-      <strong>Board:</strong>{" "}
-      {dataset.board || dataset.collection?.curriculum}
+      <strong>course:</strong>{" "}
+      {dataset.course || dataset.collection?.curriculum}
     </p>
 
     <p>

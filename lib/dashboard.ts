@@ -8,40 +8,39 @@ export function getBoards() {
   return [
     "CBSE",
     "ICSE",
-    "State Board",
-    "MHT-CET",
-    "JEE",
+    "Maharashtra Board",
+    "JEE Main",
     "NEET",
+    "MHT CET",
   ];
 }
-export function getClasses(board?: string) {
-  switch (board) {
+export function getClasses(course?: string) {
+  switch (course) {
     case "CBSE":
-      return ["6","7","8","9","10","11","12"];
+      return ["9","10","11","12"];
 
     case "ICSE":
-      return ["6","7","8","9","10"];
-
-    case "State Board":
-      return ["6","7","8","9","10","11","12"];
+      return ["9","10","11","12"];
+    case "Maharashtra Board":
+      return ["9","10","11","12"];
 
     case "MHT-CET":
-      return ["11","12"];
+      return ["11","12","11 + 12"];
 
-    case "JEE":
-      return ["11","12"];
+    case "JEE Main":
+      return ["11","12","11 + 12"];
 
     case "NEET":
-      return ["11","12"];
+      return ["11","12","11 + 12"];
 
     default:
       return [];
   }
 }
 
-export function getSubjects(board?: string, cls?: string) {
+export function getSubjects(course?: string, cls?: string) {
 
-  switch(board){
+  switch(course){
 
     case "CBSE":
       return [...new Set(cbseQuestions.map((q:any)=>q.subject))];
@@ -76,7 +75,7 @@ export function getSubjects(board?: string, cls?: string) {
         "History",
       ];
 
-    case "State Board":
+    case "State course":
       return [
         "Mathematics",
         "Science",

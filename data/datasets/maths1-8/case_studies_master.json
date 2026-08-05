@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0.0",
   "release_version": "2026.07.22.2",
-  "board": "CBSE",
+  "course": "CBSE",
   "class": "IX",
   "subject": "Mathematics",
   "session": "2026-27",
@@ -69,12 +69,12 @@
         },
         {
           "id": "MATH9-C01-CS-02",
-          "title": "Robot Route on a Game Board",
+          "title": "Robot Route on a Game course",
           "source_sections": [
             "1.3 The 2-d Cartesian Coordinate System",
             "1.4 Distance Between Two Points in the 2-D Plane"
           ],
-          "passage": "A robot moves on a square game board marked as a coordinate plane. It starts at P(−4, 3), moves vertically to Q(−4, −5), and then moves horizontally to R(2, −5). It can also travel directly from P to R. Each unit on the board represents one metre. The programmer wants to compare the grid route P to Q to R with the direct route P to R.",
+          "passage": "A robot moves on a square game course marked as a coordinate plane. It starts at P(−4, 3), moves vertically to Q(−4, −5), and then moves horizontally to R(2, −5). It can also travel directly from P to R. Each unit on the course represents one metre. The programmer wants to compare the grid route P to Q to R with the direct route P to R.",
           "figure": {
             "file": "Assets/ch01_case02_robot_route.png",
             "caption": "Figure 2: Grid route PQR and direct route PR on a one-unit grid",

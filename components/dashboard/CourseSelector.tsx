@@ -11,23 +11,49 @@ export default function CourseSelector({
   selected,
   onSelect,
 }: Props) {
+  const handleChange = (course: string) => {
+    const allowedCourses = JSON.parse(
+      localStorage.getItem("allowedCourses") || "[]"
+    );
+
+    // If nothing is configured by admin, allow everything
+    if (allowedCourses.length === 0) {
+      onSelect(course);
+      return;
+    }
+
+    const subscribed = allowedCourses.some((item: string) => {
+      if (course === "CBSE") return item.includes("CBSE");
+      if (course === "ICSE") return item.includes("ICSE");
+      if (course === "Maharashtra Board")
+        return item.includes("Maharashtra");
+      if (course === "JEE Main") return item.includes("JEE");
+      if (course === "NEET") return item.includes("NEET");
+      if (course === "MHT CET") return item.includes("MHT");
+      return false;
+    });
+
+    if (!subscribed) {
+      alert(
+        `🚫 You haven't subscribed to ${course}.\n\nPlease contact the administrator to purchase this course.`
+      );
+      return;
+    }
+
+    onSelect(course);
+  };
+
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
+    <select
+      value={selected}
+      onChange={(e) => handleChange(e.target.value)}
+      className="w-full rounded-xl border border-gray-300 bg-white p-3 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500"
+    >
       {courses.map((course) => (
-        <button
-          key={course}
-          onClick={() => onSelect(course)}
-          className={`rounded-xl border p-5 transition-all ${
-            selected === course
-              ? "bg-blue-600 text-white"
-              : "bg-white hover:bg-gray-100"
-          }`}
-        >
-          <h2 className="font-bold text-lg">
-            {course}
-          </h2>
-        </button>
+        <option key={course} value={course}>
+          {course}
+        </option>
       ))}
-    </div>
+    </select>
   );
 }

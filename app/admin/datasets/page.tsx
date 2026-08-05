@@ -24,7 +24,7 @@ export default function DatasetPage() {
 
             <tr>
 
-              <th className="p-3 text-left">Board</th>
+              <th className="p-3 text-left">course</th>
 
               <th className="p-3 text-left">Class</th>
 
@@ -55,7 +55,7 @@ export default function DatasetPage() {
       <tr key={index} className="border-t">
 
         <td className="p-3">
-          {d.board || d.collection?.curriculum}
+          {d.course || d.collection?.curriculum}
         </td>
 
         <td className="p-3">

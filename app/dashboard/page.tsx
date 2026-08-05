@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Link from "next/link";
 
 import DashboardLayout from "@/components/DashboardLayout";
@@ -17,9 +17,34 @@ import {
 } from "@/lib/dashboard";
 
 export default function Dashboard() {
-const boards = getBoards() as string[];
+const allBoards = getBoards() as string[];
 
-const [selectedBoard, setSelectedBoard] = useState(boards[0] ?? "");
+const [boards, setBoards] = useState<string[]>([]);
+useEffect(() => {
+  const allowed = JSON.parse(
+    localStorage.getItem("allowedCourses") || "[]"
+  );
+
+  if (allowed.length === 0) {
+    setBoards(allBoards);
+    return;
+  }
+
+  const filtered = allBoards.filter((board) =>
+    allowed.some((course: string) =>
+      course.includes(board)
+    )
+  );
+
+  setBoards(filtered);
+}, []);
+const [selectedBoard, setSelectedBoard] =
+useState("");
+useEffect(() => {
+  if (boards.length && !selectedBoard) {
+    setSelectedBoard(boards[0]);
+  }
+}, [boards]);
 
 const classes = getClasses(selectedBoard) as string[];
 

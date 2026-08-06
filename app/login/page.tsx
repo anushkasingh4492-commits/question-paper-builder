@@ -15,7 +15,7 @@ export default function LoginPage() {
 
     localStorage.setItem("username", name);
 
-    router.push("/dashboard");
+  router.push("/subscription")
   };
 
   return (

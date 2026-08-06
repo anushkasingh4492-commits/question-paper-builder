@@ -19,24 +19,17 @@ import {
 export default function Dashboard() {
 const allBoards = getBoards() as string[];
 
-const [boards, setBoards] = useState<string[]>([]);
+
+const [boards] = useState<string[]>(allBoards);
+
+const [allowedCourses, setAllowedCourses] = useState<string[]>([]);
+
 useEffect(() => {
-  const allowed = JSON.parse(
+  const saved = JSON.parse(
     localStorage.getItem("allowedCourses") || "[]"
   );
 
-  if (allowed.length === 0) {
-    setBoards(allBoards);
-    return;
-  }
-
-  const filtered = allBoards.filter((board) =>
-    allowed.some((course: string) =>
-      course.includes(board)
-    )
-  );
-
-  setBoards(filtered);
+  setAllowedCourses(saved);
 }, []);
 const [selectedBoard, setSelectedBoard] =
 useState("");
@@ -75,9 +68,9 @@ const chapters = getChapters(selectedSubject) as string[];
           </h2>
 <CourseSelector
   courses={boards}
+  allowedCourses={allowedCourses}
   selected={selectedBoard}
   onSelect={(board) => {
-    setSelectedBoard(board);
 
     const newClasses = getClasses(board) as string[];
     setSelectedClass(newClasses[0] ?? "");

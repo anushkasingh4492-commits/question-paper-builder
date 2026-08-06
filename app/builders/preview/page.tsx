@@ -12,7 +12,18 @@ import {
   TextRun,
   HeadingLevel,
 } from "docx";
+import {
+  DndContext,
+  closestCenter,
+} from "@dnd-kit/core";
 
+import {
+  SortableContext,
+  verticalListSortingStrategy,
+  arrayMove,
+} from "@dnd-kit/sortable";
+
+import HeaderItem from "@/components/builder/HeaderItem";
 interface Question {
   id: string;
   stem: string;
@@ -57,13 +68,41 @@ interface PaperData {
     footer: string;
   };
 
-  questions: Question[];
+headerOrder?: string[];
+
+questions: Question[];
 }
 
 export default function PreviewPage() {
   const [paper, setPaper] = useState<PaperData | null>(null);
   const template = paper?.template ?? defaultTemplate;
+const [headerOrder, setHeaderOrder] = useState<string[]>([
+  "schoolName",
+  "examName",
+  "className",
+  "subjectName",
+  "examDate",
+  "time",
+  "totalMarks",
+]);
 
+useEffect(() => {
+  if (paper?.headerOrder) {
+    setHeaderOrder(paper.headerOrder);
+  }
+}, [paper]);
+function handleHeaderDragEnd(event: any) {
+  const { active, over } = event;
+
+  if (!over || active.id === over.id) return;
+
+  setHeaderOrder((items) => {
+    const oldIndex = items.indexOf(active.id);
+    const newIndex = items.indexOf(over.id);
+
+    return arrayMove(items, oldIndex, newIndex);
+  });
+}
   useEffect(() => {
     const data = localStorage.getItem("paperData");
 
@@ -386,38 +425,64 @@ if (template.showPageNumbers) {
     fontFamily: template.fontFamily,
   }}
 >
-  <h1
-    style={{
-      fontSize: template.headingFont,
-      fontWeight: "bold",
-    }}
+ <DndContext
+  collisionDetection={closestCenter}
+  onDragEnd={handleHeaderDragEnd}
+>
+  <SortableContext
+    items={headerOrder}
+    strategy={verticalListSortingStrategy}
   >
-    {paper.schoolName}
-  </h1>
+    {headerOrder.map((item) => {
+      let value: React.ReactNode = null;
 
-  <p className="text-xl mt-2">
-    {paper.examName}
-  </p>
+      switch (item) {
+        case "schoolName":
+          value = (
+            <h1
+              style={{ fontSize: template.headingFont }}
+              className="font-bold"
+            >
+              {paper?.schoolName}
+            </h1>
+          );
+          break;
 
-  <p>
-    {paper.className}
-  </p>
+        case "examName":
+          value = <p>{paper?.examName}</p>;
+          break;
 
-  <p>
-    Subject : {paper.subjectName}
-  </p>
+        case "className":
+          value = <p>Class: {paper?.className}</p>;
+          break;
 
-  <p>
-    Date : {paper.examDate}
-  </p>
+        case "subjectName":
+          value = <p>Subject: {paper?.subjectName}</p>;
+          break;
 
-  <div className="flex justify-between mt-4">
-    <span>Time : {paper.time}</span>
+        case "examDate":
+          value = <p>Date: {paper?.examDate}</p>;
+          break;
 
-    <span>
-      Maximum Marks : {paper.totalMarks}
-    </span>
-  </div>
+        case "time":
+          value = <p>Time: {paper?.time}</p>;
+          break;
+
+        case "totalMarks":
+          value = <p>Total Marks: {paper?.totalMarks}</p>;
+          break;
+      }
+
+      return (
+        <HeaderItem key={item} id={item}>
+          {value}
+        </HeaderItem>
+      );
+    })}
+  </SortableContext>
+</DndContext>
+
+<hr className="my-4" />
 </div>
 
     {/* Name */}

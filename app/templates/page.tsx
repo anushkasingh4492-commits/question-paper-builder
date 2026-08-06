@@ -6,24 +6,39 @@ import { defaultTemplate } from "@/lib/defaultTemplate";
 
 export default function TemplatesPage() {
   const [template, setTemplate] = useState(defaultTemplate);
+const [headerOrder, setHeaderOrder] = useState([
+  "School Name",
+  "Paper Title",
+  "Class",
+  "Subject",
+  "Date",
+  "Duration",
+  "Total Marks",
+]);
+ useEffect(() => {
+  const saved = localStorage.getItem("paperTemplate");
 
-  useEffect(() => {
-    const saved = localStorage.getItem("paperTemplate");
+  if (saved) {
+    const parsed = JSON.parse(saved);
 
-    if (saved) {
-      setTemplate(JSON.parse(saved));
+    setTemplate(parsed);
+
+    if (parsed.headerOrder) {
+      setHeaderOrder(parsed.headerOrder);
     }
-  }, []);
-
-  function saveTemplate() {
-    localStorage.setItem(
-      "paperTemplate",
-      JSON.stringify(template)
-    );
-
-    alert("Template Saved Successfully!");
   }
+}, []);
+function saveTemplate() {
+  localStorage.setItem(
+    "paperTemplate",
+    JSON.stringify({
+      ...template,
+      headerOrder,
+    })
+  );
 
+  alert("Template Saved Successfully!");
+}
   return (
     <DashboardLayout>
       <div className="bg-white rounded-xl shadow-lg p-8">

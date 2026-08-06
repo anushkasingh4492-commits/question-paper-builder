@@ -104,17 +104,70 @@ setPresets(presets);
               <label className="font-medium block mb-2">
                 Header Color
               </label>
+{/* Header Color */}
 
-              <input
-                type="color"
-                value={template.headerColor}
-                onChange={(e) =>
-                  setTemplate({
-                    ...template,
-                    headerColor: e.target.value,
-                  })
-                }
-              />
+<div>
+  <label className="font-medium block mb-2">
+    Header Color
+  </label>
+
+  <div className="flex flex-wrap gap-3">
+
+    {[
+      "#2563eb",
+      "#dc2626",
+      "#16a34a",
+      "#7c3aed",
+      "#ea580c",
+      "#0891b2",
+      "#1f2937",
+      "#be123c",
+      "#ca8a04",
+      "#000000",
+    ].map((color) => (
+      <button
+        key={color}
+        type="button"
+        onClick={() =>
+          setTemplate({
+            ...template,
+            headerColor: color,
+          })
+        }
+        className="w-10 h-10 rounded-full border-2"
+        style={{
+          backgroundColor: color,
+        }}
+      />
+    ))}
+
+  </div>
+
+  <input
+    type="color"
+    className="mt-4"
+    value={template.headerColor}
+    onChange={(e) =>
+      setTemplate({
+        ...template,
+        headerColor: e.target.value,
+      })
+    }
+  />
+
+  <input
+    className="border rounded-lg p-3 mt-3 w-full"
+    placeholder="#2563EB"
+    value={template.headerColor}
+    onChange={(e) =>
+      setTemplate({
+        ...template,
+        headerColor: e.target.value,
+      })
+    }
+  />
+</div>
+
             </div>
 
             {/* Font */}

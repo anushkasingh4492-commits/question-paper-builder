@@ -15,7 +15,8 @@ const [headerOrder, setHeaderOrder] = useState([
   "Duration",
   "Total Marks",
 ]);
- useEffect(() => {
+const [presets, setPresets] = useState<any[]>([]);
+useEffect(() => {
   const saved = localStorage.getItem("paperTemplate");
 
   if (saved) {
@@ -27,17 +28,38 @@ const [headerOrder, setHeaderOrder] = useState([
       setHeaderOrder(parsed.headerOrder);
     }
   }
-}, []);
-function saveTemplate() {
-  localStorage.setItem(
-    "paperTemplate",
-    JSON.stringify({
-      ...template,
-      headerOrder,
-    })
+
+  const savedPresets = JSON.parse(
+    localStorage.getItem("paperPresets") || "[]"
   );
 
-  alert("Template Saved Successfully!");
+  setPresets(savedPresets);
+
+}, []);
+
+function saveTemplate() {
+  const presetName =
+    prompt("Enter Preset Name");
+
+  if (!presetName) return;
+
+  const presets = JSON.parse(
+    localStorage.getItem("paperPresets") || "[]"
+  );
+
+  presets.push({
+    id: Date.now(),
+    name: presetName,
+    template,
+    headerOrder,
+  });
+
+  localStorage.setItem(
+    "paperPresets",
+    JSON.stringify(presets)
+  );
+setPresets(presets);
+  alert("Preset Saved!");
 }
   return (
     <DashboardLayout>
@@ -268,6 +290,67 @@ function saveTemplate() {
 
             </div>
 
+<div className="mt-8 border-t pt-6">
+
+  <h2 className="text-2xl font-bold mb-4">
+    Saved Presets
+  </h2>
+
+  <select
+    className="w-full border rounded-lg p-3"
+    defaultValue=""
+    onChange={(e) => {
+      const preset = presets.find(
+        (p) => p.id === Number(e.target.value)
+      );
+
+      if (!preset) return;
+
+      setTemplate(preset.template);
+      setHeaderOrder(
+        preset.headerOrder || headerOrder
+      );
+    }}
+  >
+    <option value="">
+      Select Preset
+    </option>
+
+    {presets.map((preset) => (
+      <option
+        key={preset.id}
+        value={preset.id}
+      >
+        {preset.name}
+      </option>
+    ))}
+  </select>
+
+  <button
+    className="mt-4 bg-red-600 text-white px-4 py-2 rounded-lg"
+    onClick={() => {
+      const name = prompt("Enter preset name to delete");
+
+      if (!name) return;
+
+      const updated = presets.filter(
+        (p) => p.name !== name
+      );
+
+      setPresets(updated);
+
+      localStorage.setItem(
+        "paperPresets",
+        JSON.stringify(updated)
+      );
+
+      alert("Preset Deleted!");
+    }}
+  >
+    Delete Preset
+  </button>
+
+</div>
             <button
               onClick={saveTemplate}
               className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg"

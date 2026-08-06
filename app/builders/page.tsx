@@ -323,6 +323,28 @@ function handleDragEnd(event: any) {
       (paperQuestion) => paperQuestion.id === question.id
     )
 );
+function savePreset() {
+  const name = prompt("Preset Name");
+
+  if (!name) return;
+
+  const presets = JSON.parse(
+    localStorage.getItem("paperPresets") || "[]"
+  );
+
+  presets.push({
+    id: Date.now(),
+    name,
+    template,
+  });
+
+  localStorage.setItem(
+    "paperPresets",
+    JSON.stringify(presets)
+  );
+
+  alert("Preset Saved!");
+}
 
   const totalPages = Math.ceil(
     filteredQuestions.length /

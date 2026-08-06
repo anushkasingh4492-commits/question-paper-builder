@@ -339,6 +339,7 @@ const downloadDOCX = async () => {
 
   saveAs(blob, `${paper.title}.docx`);
 };
+
   const downloadAnswerKey = () => {
     if (!paper) return;
 
@@ -350,60 +351,62 @@ const downloadDOCX = async () => {
     let y = 35;
 
     paper.questions.forEach((q, index) => {
-      pdf.setFontSize(12);
-
-      const answer = q.answer
+      const answerText = q.answer
         ? `${q.answer.option_id}. ${q.answer.text}`
         : "Answer not available";
 
-  pdf.setFontSize(
-  template.questionFont
-);
+      pdf.setFont("times", "normal");
+      pdf.setFontSize(template.questionFont);
+      pdf.text(`${index + 1}. ${q.stem}`, 20, y);
+      y += 8;
 
-pdf.setFont("times","normal");
-
-pdf.text(
-  `${index + 1}. ${q.stem}`,
-  20,
-  y
-);
-if (template.showMarks) {
-  pdf.setFontSize(10);
-
-  pdf.text(
-    `(${q.marks} Marks)`,
-    170,
-    y
-  );
-}
-
+      pdf.setFontSize(12);
+      pdf.text(`Answer: ${answerText}`, 30, y);
       y += 10;
+
+      if (template.showMarks) {
+        pdf.setFontSize(10);
+        pdf.text(`(${q.marks} Marks)`, 170, y - 10);
+      }
+
+      y += 8;
 
       if (y > 280) {
         pdf.addPage();
         y = 20;
       }
     });
-pdf.setFontSize(10);
 
-pdf.line(20,280,190,280);
+    pdf.setFontSize(10);
+    pdf.line(20, 280, 190, 280);
+    pdf.text(template.footer, 20, 287);
 
-pdf.text(
-  template.footer,
-  20,
-  287
-);
+    if (template.showPageNumbers) {
+      pdf.text("Page 1", 170, 287);
+    }
 
-if (template.showPageNumbers) {
-
-  pdf.text(
-    "Page 1",
-    170,
-    287
-  );
-
-}
     pdf.save(`${paper.title}-Answer-Key.pdf`);
+  };
+
+  const savePreset = () => {
+    if (!paper) return;
+
+    const presetName = prompt("Preset Name");
+    if (!presetName) return;
+
+    const presets = JSON.parse(
+      localStorage.getItem("paperPresets") || "[]"
+    );
+
+    presets.push({
+      id: Date.now(),
+      name: presetName,
+      template: paper.template ?? defaultTemplate,
+      headerOrder,
+    });
+
+    localStorage.setItem("paperPresets", JSON.stringify(presets));
+    alert("Preset Saved!");
   };
 
   if (!paper) {
@@ -618,11 +621,18 @@ if (template.showPageNumbers) {
       >
         Download Answer Key
       </button>
+
       <button
   onClick={downloadDOCX}
   className="bg-blue-800 text-white px-5 py-2 rounded"
 >
   Download DOCX
+</button>
+<button
+  onClick={savePreset}
+  className="bg-green-600 text-white px-4 py-2 rounded-lg"
+>
+  💾 Save Layout as Preset
 </button>
       <button
   onClick={() => {

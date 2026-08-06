@@ -20,7 +20,7 @@ export default function CreatePaper() {
 
   const [selectedChapters, setSelectedChapters] = useState<string[]>([]);
 
-
+const [showChapters, setShowChapters] = useState(false);
   // Load saved values
   useEffect(() => {
 
@@ -199,8 +199,10 @@ console.log(classes);
               className="w-full border rounded-lg p-3 mt-2"
 
               value={board}
-
-              onChange={(e)=>setBoard(e.target.value)}
+onChange={(e) => {
+  setShowChapters(false);
+  setBoard(e.target.value);
+}}
 
             >
 
@@ -240,11 +242,10 @@ console.log(classes);
               className="w-full border rounded-lg p-3 mt-2"
 
               value={studentClass}
-
-              onChange={(e)=>
-                setStudentClass(e.target.value)
-              }
-
+              onChange={(e) => {
+                setShowChapters(false);
+                setStudentClass(e.target.value);
+              }}
             >
 
               <option value="">
@@ -284,11 +285,10 @@ console.log(classes);
               className="w-full border rounded-lg p-3 mt-2"
 
               value={subject}
-
-              onChange={(e)=>
-                setSubject(e.target.value)
-              }
-
+onChange={(e) => {
+  setShowChapters(false);
+  setSubject(e.target.value);
+}}
             >
 
 
@@ -376,36 +376,22 @@ console.log(classes);
 
 
             <label className="font-medium">
-              Exam Group
+          Exam Group
             </label>
 
 
-            <select
+         <select
+  value={examGroup}
+  onChange={(e) => setExamGroup(e.target.value)}
+  className="w-full border rounded-lg px-3 py-2"
+>
+  <option value="Assignment">Assignment</option>
+  <option value="Test">Test</option>
+</select>
 
-              className="w-full border rounded-lg p-3 mt-2"
-
-              value={examGroup}
-
-              onChange={(e)=>
-                setExamGroup(e.target.value)
-              }
-
-            >
-
-              <option>
-                Internal
-              </option>
-
-              <option>
-                School
-              </option>
-
-              <option>
-                Practice
-              </option>
+            
 
 
-            </select>
 
 
           </div>
@@ -455,33 +441,44 @@ console.log(classes);
 
         <div className="mt-8">
 
+  <h2 className="font-bold text-lg mb-3">
+    Available Chapters
+  </h2>
 
-          <h2 className="font-bold text-lg mb-3">
+  {!showChapters ? (
+    <button
+      onClick={() => setShowChapters(true)}
+      className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg"
+    >
+      Show Chapters
+    </button>
+  ) : (
+    <>
+      <div className="grid grid-cols-3 gap-3">
+        {[...new Set(chapters)].map((chapter: any) => (
+          <div
+            key={chapter}
+            onClick={() => toggleChapter(chapter)}
+            className={`
+              border rounded-lg p-3 cursor-pointer transition
+              ${
+                selectedChapters.includes(chapter)
+                  ? "bg-blue-600 text-white"
+                  : "bg-gray-50 hover:bg-blue-50"
+              }
+            `}
+          >
+            {chapter}
+          </div>
+        ))}
+      </div>
 
-            Available Chapters
+      <p className="mt-3 text-sm text-gray-500">
+        Selected Chapters: {selectedChapters.length}
+      </p>
+    </>
+  )}
 
-          </h2>
-
-
-
-          <div className="grid grid-cols-3 gap-3">
-            {
-              [...new Set(chapters)].map((chapter: any) => (
-                <div
-                  key={chapter}
-                  onClick={() => toggleChapter(chapter)}
-                  className={`
-                    border rounded-lg p-3 cursor-pointer transition
-                    ${selectedChapters.includes(chapter)
-                      ? "bg-blue-600 text-white"
-                      : "bg-gray-50 hover:bg-blue-50"
-                    }
-                  `}
-                >
-                  {chapter}
-                </div>
-              ))
-            }
           </div>
 
 
@@ -569,7 +566,7 @@ console.log(classes);
 
 
 
-      </div>
+     
 
 
     </DashboardLayout>

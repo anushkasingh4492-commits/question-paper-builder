@@ -317,6 +317,12 @@ function handleDragEnd(event: any) {
     search,
     questionType,
   ]);
+  const availableQuestions = filteredQuestions.filter(
+  (question) =>
+    !paperQuestions.some(
+      (paperQuestion) => paperQuestion.id === question.id
+    )
+);
 
   const totalPages = Math.ceil(
     filteredQuestions.length /
@@ -500,8 +506,8 @@ onChange={(e)=>setSearch(e.target.value)}
 </div>
 
 <QuestionBuilderClient
-    questions={currentQuestions}
-    addQuestion={() => {}}
+  questions={availableQuestions}
+  addQuestion={addQuestion}
 />
 <div className="flex justify-between items-center mt-6">
 

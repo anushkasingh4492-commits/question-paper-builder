@@ -46,7 +46,7 @@ const [selectedClass, setSelectedClass] = useState(classes[0] ?? "");
 const subjects = getSubjects(selectedBoard, selectedClass) as string[];
 
 const [selectedSubject, setSelectedSubject] = useState(subjects[0] ?? "");
-
+const [showChapters, setShowChapters] = useState(false);
 const chapters = getChapters(selectedSubject) as string[];
 
   return (
@@ -70,13 +70,17 @@ const chapters = getChapters(selectedSubject) as string[];
   courses={boards}
   allowedCourses={allowedCourses}
   selected={selectedBoard}
-  onSelect={(board) => {
+onSelect={(board) => {
+  setShowChapters(false);
 
-    const newClasses = getClasses(board) as string[];
-    setSelectedClass(newClasses[0] ?? "");
-    const newSubjects = getSubjects(board, newClasses[0]) as string[];
-    setSelectedSubject(newSubjects[0] ?? "");
-  }}
+  setSelectedBoard(board);
+
+  const newClasses = getClasses(board) as string[];
+  setSelectedClass(newClasses[0] ?? "");
+
+  const newSubjects = getSubjects(board, newClasses[0]) as string[];
+  setSelectedSubject(newSubjects[0] ?? "");
+}}
 />
         </div>
 
@@ -88,12 +92,14 @@ const chapters = getChapters(selectedSubject) as string[];
           <ClassSelector
   classes={classes}
   selected={selectedClass}
-  onSelect={(cls) => {
-    setSelectedClass(cls);
+onSelect={(cls) => {
+  setShowChapters(false);
 
-    const newSubjects = getSubjects(selectedBoard, cls) as string[];
-    setSelectedSubject(newSubjects[0] ?? "");
-  }}
+  setSelectedClass(cls);
+
+  const newSubjects = getSubjects(selectedBoard, cls) as string[];
+  setSelectedSubject(newSubjects[0] ?? "");
+}}
 />
         </div>
 
@@ -105,7 +111,10 @@ const chapters = getChapters(selectedSubject) as string[];
          <SubjectSelector
   subjects={subjects}
   selected={selectedSubject}
-  onSelect={setSelectedSubject}
+ onSelect={(subject) => {
+  setShowChapters(false);
+  setSelectedSubject(subject);
+}}
 />
         </div>
 
@@ -114,7 +123,22 @@ const chapters = getChapters(selectedSubject) as string[];
             Select Chapter
           </h2>
 
-          <ChapterSelector chapters={chapters} />
+         <div>
+  <h2 className="text-xl font-semibold mb-4">
+    Select Chapter
+  </h2>
+
+  {!showChapters ? (
+    <button
+      onClick={() => setShowChapters(true)}
+      className="bg-blue-600 text-white px-5 py-3 rounded-lg hover:bg-blue-700"
+    >
+      Show Chapters
+    </button>
+  ) : (
+    <ChapterSelector chapters={chapters} />
+  )}
+</div>
         </div>
 
         <div>

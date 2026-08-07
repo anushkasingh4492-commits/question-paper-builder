@@ -1,25 +1,17 @@
 "use client";
 
 import Link from "next/link";
-import type { ComponentType } from "react";
-import type { LucideProps } from "lucide-react";
+import { usePathname } from "next/navigation";
 import {
   LayoutDashboard,
   FileText,
-  BookOpen,
-  Folder,
-  Settings,
   Files,
-  LayoutTemplate,
+  Folder,
+  BookOpen,
+  Settings,
 } from "lucide-react";
 
-type MenuItem = {
-  title: string;
-  icon: ComponentType<LucideProps>;
-  href: string;
-};
-
-const menuItems: MenuItem[] = [
+const menuItems = [
   {
     title: "Dashboard",
     icon: LayoutDashboard,
@@ -48,29 +40,63 @@ const menuItems: MenuItem[] = [
 ];
 
 export default function Sidebar() {
+  const pathname = usePathname();
+
   return (
-    <aside className="w-64 h-screen bg-white border-r flex flex-col">
-      <div className="p-6 border-b">
-        <h1 className="text-xl font-bold text-blue-600">
-          Paper Generator
+    <aside className="w-72 min-h-screen bg-white border-r border-[#eee4d8] flex flex-col">
+
+      {/* Logo */}
+      <div className="px-6 py-6">
+        <h1
+          className="text-3xl font-semibold text-[#6f2332]"
+          style={{ fontFamily: "Source Serif 4, serif" }}
+        >
+          Paper Tree
         </h1>
-        <p className="text-sm text-gray-500">
+
+        <p className="text-sm text-[#75685d] mt-2">
           Assessment Creation Tool
         </p>
       </div>
 
-      <nav className="flex-1 p-4 space-y-2">
-       {menuItems.map((item) => (
-  <Link
-    key={item.href}
-    href={item.href}
-            className="flex items-center gap-3 px-4 py-3 rounded-lg hover:bg-blue-50 transition"
-          >
-            <item.icon size={20} />
-            {item.title}
-          </Link>
-        ))}
+
+      {/* Navigation */}
+      <nav className="flex-1 px-4 py-6 space-y-2">
+        {menuItems.map((item) => {
+          const Icon = item.icon;
+          const active = pathname === item.href;
+
+          return (
+            <Link
+              key={item.title}
+              href={item.href}
+              className={`flex items-center gap-3 rounded-xl px-4 py-3 transition-all ${
+                active
+                  ? "bg-[#6f2332] text-white shadow-sm"
+                  : "text-[#4b4b4b] hover:bg-[#f7f2ec]"
+              }`}
+            >
+              <Icon size={20} />
+              <span className="font-medium">
+                {item.title}
+              </span>
+            </Link>
+          );
+        })}
       </nav>
+
+
+      {/* Bottom */}
+      <div className="border-t border-[#eee4d8] p-4">
+        <Link
+          href="/settings"
+          className="flex items-center gap-3 rounded-xl px-4 py-3 text-[#4b4b4b] hover:bg-[#f7f2ec]"
+        >
+          <Settings size={20} />
+          <span>Settings</span>
+        </Link>
+      </div>
+
     </aside>
   );
 }

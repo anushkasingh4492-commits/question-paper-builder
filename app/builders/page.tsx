@@ -142,6 +142,13 @@ useEffect(() => {
   }
 }, []);
 const [questionType, setQuestionType] = useState("All");
+const [questionSourceFilter, setQuestionSourceFilter] = useState("all");
+useEffect(() => {
+  const savedQuestionType = localStorage.getItem("questionType");
+  if (savedQuestionType) {
+    setQuestionSourceFilter(savedQuestionType);
+  }
+}, []);
 function addQuestion(question: Question) {
   setPaperQuestions((prev) => {
     console.log("Paper count:", prev.length + 1);
@@ -315,6 +322,14 @@ function handleDragEnd(event: any) {
         q.difficulty === difficulty)
 
       &&
+
+      (questionSourceFilter !== "pyq" ||
+        (q as any).source_type === "PYQ" ||
+        (q as any).question_type === "PYQ" ||
+        (q as any).type === "PYQ")
+
+      &&
+
 (questionType === "All" ||
  ( (q as any).type === questionType))
 
@@ -538,6 +553,18 @@ setPage(1);
       {t}
     </option>
   ))}
+</select>
+
+<select
+  className="border rounded p-2"
+  value={questionSourceFilter}
+  onChange={(e) => {
+    setQuestionSourceFilter(e.target.value);
+    setPage(1);
+  }}
+>
+  <option value="all">All Questions</option>
+  <option value="pyq">Previous Year Questions</option>
 </select>
 
 <select

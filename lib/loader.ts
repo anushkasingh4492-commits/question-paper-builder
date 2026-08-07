@@ -25,6 +25,16 @@ subject: q.subject || subject,
     q.question_type ||
     "Unknown",
 
+  source_type:
+    q.source_type ||
+    q.sourceType ||
+    undefined,
+
+  question_type:
+    q.question_type ||
+    q.questionType ||
+    undefined,
+
   stem:
     q.stem ||
     q.question ||

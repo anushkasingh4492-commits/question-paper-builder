@@ -120,8 +120,8 @@ const [selectedChapters, setSelectedChapters] = useState<string[]>(
           >
             <option value="">Board</option>
 
-            {boards.map((b: any) => (
-              <option key={b}>{b}</option>
+            {boards.map((b: any, index: number) => (
+              <option key={`${b}-${index}`} value={b}>{b}</option>
             ))}
           </select>
 
@@ -134,8 +134,8 @@ const [selectedChapters, setSelectedChapters] = useState<string[]>(
           >
             <option value="">Class</option>
 
-            {classes.map((c: any) => (
-              <option key={c}>{c}</option>
+            {classes.map((c: any, index: number) => (
+              <option key={`${c}-${index}`} value={c}>{c}</option>
             ))}
           </select>
 
@@ -148,8 +148,8 @@ const [selectedChapters, setSelectedChapters] = useState<string[]>(
           >
             <option value="">Subject</option>
 
-            {subjects.map((s: any) => (
-              <option key={s}>{s}</option>
+            {subjects.map((s: any, index: number) => (
+              <option key={`${s}-${index}`} value={s}>{s}</option>
             ))}
           </select>
 

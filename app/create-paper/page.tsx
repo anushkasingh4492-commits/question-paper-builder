@@ -17,6 +17,7 @@ export default function CreatePaper() {
   const [paperType, setPaperType] = useState("Class Test");
   const [examGroup, setExamGroup] = useState("Internal");
   const [testName, setTestName] = useState("");
+  const [questionType, setQuestionType] = useState("all");
 
   const [selectedChapters, setSelectedChapters] = useState<string[]>([]);
 
@@ -27,10 +28,12 @@ const [showChapters, setShowChapters] = useState(false);
     const savedBoard = localStorage.getItem("board");
     const savedClass = localStorage.getItem("class");
     const savedSubject = localStorage.getItem("subject");
+    const savedQuestionType = localStorage.getItem("questionType");
 
     if (savedBoard) setBoard(savedBoard);
     if (savedClass) setStudentClass(savedClass);
     if (savedSubject) setSubject(savedSubject);
+    if (savedQuestionType) setQuestionType(savedQuestionType);
 
   }, []);
 
@@ -323,7 +326,7 @@ onChange={(e) => {
         {/* Second Row */}
 
 
-        <div className="grid grid-cols-2 gap-6 mt-6">
+        <div className="grid grid-cols-3 gap-6 mt-6">
 
 
           <div>
@@ -389,13 +392,21 @@ onChange={(e) => {
   <option value="Test">Test</option>
 </select>
 
-            
-
-
-
-
           </div>
 
+          <div>
+            <label className="font-medium">
+              Question Type
+            </label>
+            <select
+              className="w-full border rounded-lg p-3 mt-2"
+              value={questionType}
+              onChange={(e) => setQuestionType(e.target.value)}
+            >
+              <option value="all">All Questions</option>
+              <option value="pyq">Previous Year Questions</option>
+            </select>
+          </div>
 
         </div>
 
@@ -540,12 +551,15 @@ onChange={(e) => {
                 paperType
               );
 
+              localStorage.setItem(
+                "questionType",
+                questionType
+              );
 
               localStorage.setItem(
                 "testName",
                 testName
               );
-
 
               router.push("/chapters");
 

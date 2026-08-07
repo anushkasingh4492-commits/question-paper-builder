@@ -86,6 +86,24 @@ console.log("OR TARGET:", orTarget);
   setExamDate(preset.examDate || "");
   setDuration(preset.duration || "1 Hour");
   setTotalMarks(preset.totalMarks || 80);
+
+  const draft = JSON.parse(
+    localStorage.getItem("paperDraft") || "null"
+  );
+
+  if (draft) {
+    setSchoolName(draft.schoolName);
+    setExamName(draft.examName);
+    setClassName(draft.className);
+    setSubjectName(draft.subjectName);
+    setExamDate(draft.examDate);
+    setPaperTitle(draft.paperTitle);
+    setDuration(draft.duration);
+    setTotalMarks(draft.totalMarks);
+    setInstructions(draft.instructions);
+    setTemplate(draft.template);
+    setPaperQuestions(draft.paperQuestions);
+  }
 }, []);
 const [template, setTemplate] = useState({
   schoolName: "ABC Public School",
@@ -344,6 +362,42 @@ function savePreset() {
   );
 
   alert("Preset Saved!");
+}
+function saveDraft() {
+  const draftName =
+    prompt("Enter Draft Name");
+
+  if (!draftName) return;
+
+  const drafts = JSON.parse(
+    localStorage.getItem("paperDrafts") || "[]"
+  );
+
+  drafts.push({
+    id: Date.now(),
+    name: draftName,
+
+    schoolName,
+    examName,
+    className,
+    subjectName,
+    examDate,
+
+    paperTitle,
+    duration,
+    totalMarks,
+    instructions,
+
+    template,
+    paperQuestions,
+  });
+
+  localStorage.setItem(
+    "paperDrafts",
+    JSON.stringify(drafts)
+  );
+
+  alert("Draft Saved Successfully!");
 }
 
   const totalPages = Math.ceil(
@@ -727,9 +781,22 @@ Save Preset
 >
   Generate Preview
 </button>
-
+<button
+  onClick={saveDraft}
+  className="bg-yellow-500 text-white px-4 py-2 rounded-lg w-full"
+>
+  💾 Save Draft
+</button>
+<button
+  onClick={() => {
+    localStorage.removeItem("paperDraft");
+    alert("Draft Deleted");
+  }}
+  className="bg-red-600 text-white px-4 py-2 rounded-lg w-full"
+>
+  🗑 Clear Draft
+</button>
 </div>
-
 </div>
 
 </div>

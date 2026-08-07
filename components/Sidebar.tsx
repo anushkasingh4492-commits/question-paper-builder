@@ -1,6 +1,8 @@
 "use client";
 
 import Link from "next/link";
+import type { ComponentType } from "react";
+import type { LucideProps } from "lucide-react";
 import {
   LayoutDashboard,
   FileText,
@@ -11,7 +13,13 @@ import {
   LayoutTemplate,
 } from "lucide-react";
 
-const menuItems = [
+type MenuItem = {
+  title: string;
+  icon: ComponentType<LucideProps>;
+  href: string;
+};
+
+const menuItems: MenuItem[] = [
   {
     title: "Dashboard",
     icon: LayoutDashboard,
@@ -23,18 +31,20 @@ const menuItems = [
     href: "/create-paper",
   },
   {
-  title: "My Papers",
-  icon: Files,
-  href: "/papers",
-},
- 
+    title: "My Papers",
+    icon: Files,
+    href: "/papers",
+  },
   {
     title: "Templates",
     icon: Folder,
     href: "/templates",
   },
-
- 
+  {
+    title: "Drafts",
+    icon: BookOpen,
+    href: "/drafts",
+  },
 ];
 
 export default function Sidebar() {

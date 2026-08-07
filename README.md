@@ -1,36 +1,34 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+Paper Generator — Next.js app for creating and exporting practice papers.
 
-## Getting Started
+Getting started
 
-First, run the development server:
+- Install dependencies and start the dev server:
 
 ```bash
+npm install
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Open http://localhost:3000 in your browser. The app will hot-reload as you edit source files.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+What changed in this repo
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+- Design system: added token files and core component CSS under `tokens/` and `components/`.
+- Design-system preview page available at `/design-system` (`app/design-system/page.tsx`).
+- Fonts: loaded via a top-level CSS `@import` in `app/globals.css` (Source Serif 4 + Work Sans). If you prefer `next/font` or self-hosted fonts, I can convert this.
+- Build: `npm run build` completes successfully after fixing a CSS `@import` ordering warning.
 
-## Learn More
+Notes
 
-To learn more about Next.js, take a look at the following resources:
+- The original README referenced `next/font` and a sample Geist font. This template text has been replaced with the repo's current configuration (see `app/globals.css` and `tokens/typography.css`).
+- I committed and pushed the design-system changes to `origin/main`.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Learn more
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+- Next.js docs: https://nextjs.org/docs
+- Deploy: https://nextjs.org/docs/app/building-your-application/deploy
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+If you want I can:
+- convert fonts to `next/font` using self-hosted files,
+- remove the `app/page.tsx` redirect and show a landing page instead,
+- open a PR with these changes and a fuller changelog.

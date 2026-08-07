@@ -77,15 +77,24 @@ console.log("OR TARGET:", orTarget);
     localStorage.getItem("paperPreset") || "null"
   );
 
-  if (!preset) return;
+  if (preset) {
+    setSchoolName(preset.schoolName || "");
+    setExamName(preset.examName || "");
+    setClassName(preset.className || "");
+    setSubjectName(preset.subjectName || "");
+    setExamDate(preset.examDate || "");
+    setDuration(preset.duration || "1 Hour");
+    setTotalMarks(preset.totalMarks || 80);
+  }
 
-  setSchoolName(preset.schoolName || "");
-  setExamName(preset.examName || "");
-  setClassName(preset.className || "");
-  setSubjectName(preset.subjectName || "");
-  setExamDate(preset.examDate || "");
-  setDuration(preset.duration || "1 Hour");
-  setTotalMarks(preset.totalMarks || 80);
+  const generated = JSON.parse(
+    localStorage.getItem("generatedQuestions") || "null"
+  );
+
+  if (Array.isArray(generated)) {
+    setPaperQuestions(generated);
+    return;
+  }
 
   const draft = JSON.parse(
     localStorage.getItem("paperDraft") || "null"

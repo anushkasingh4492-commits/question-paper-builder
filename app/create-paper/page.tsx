@@ -18,6 +18,8 @@ export default function CreatePaper() {
   const [examGroup, setExamGroup] = useState("Internal");
   const [testName, setTestName] = useState("");
   const [questionType, setQuestionType] = useState("all");
+  const [mode, setMode] = useState<"manual" | "auto">("manual");
+  const [count, setCount] = useState(10);
 
   const [selectedChapters, setSelectedChapters] = useState<string[]>([]);
 
@@ -35,9 +37,17 @@ const [showChapters, setShowChapters] = useState(false);
     if (savedSubject) setSubject(savedSubject);
     if (savedQuestionType) setQuestionType(savedQuestionType);
 
+    const savedMode = localStorage.getItem("mode");
+    if (savedMode === "manual" || savedMode === "auto") {
+      setMode(savedMode);
+    }
+
+    const savedCount = localStorage.getItem("count");
+    if (savedCount) {
+      const value = Number(savedCount);
+      if (!Number.isNaN(value)) setCount(value);
+    }
   }, []);
-
-
 
   // -----------------------------
   // Dropdown Data
@@ -163,6 +173,38 @@ const classes = Array.from(
 
   };
 
+  function shuffle<T>(arr: T[]) {
+    const copy = [...arr];
+
+    for (let i = copy.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+
+    return copy;
+  }
+
+  function getFilteredQuestions() {
+    return questions.filter((q: any) => {
+      if (board && q.curriculum !== board) return false;
+      if (studentClass && q.class !== Number(studentClass)) return false;
+      if (subject && q.subject !== subject) return false;
+      if (
+        selectedChapters.length > 0 &&
+        !selectedChapters.includes(q.chapter.title)
+      )
+        return false;
+      if (questionType === "pyq") {
+        return (
+          q.source_type === "PYQ" ||
+          q.question_type === "PYQ" ||
+          q.type === "PYQ"
+        );
+      }
+
+      return true;
+    });
+  }
 
 console.log(classes);
 
@@ -183,7 +225,42 @@ console.log(classes);
           Assessment Creation Tool
         </p>
 
+        <div className="flex gap-3 mb-6">
+          <button
+            onClick={() => setMode("manual")}
+            className={
+              mode === "manual"
+                ? "bg-blue-600 text-white px-4 py-2 rounded"
+                : "border px-4 py-2 rounded"
+            }
+          >
+            Cherry Pick
+          </button>
+          <button
+            onClick={() => setMode("auto")}
+            className={
+              mode === "auto"
+                ? "bg-green-600 text-white px-4 py-2 rounded"
+                : "border px-4 py-2 rounded"
+            }
+          >
+            Auto Generate
+          </button>
+        </div>
 
+        <div className="mb-6">
+          <label className="font-medium block mb-2">
+            No. of Questions
+          </label>
+          <input
+            type="number"
+            min={1}
+            max={100}
+            value={count}
+            onChange={(e) => setCount(Number(e.target.value))}
+            className="w-32 border rounded-lg p-3"
+          />
+        </div>
 
         {/* First Row */}
 
@@ -527,24 +604,20 @@ onChange={(e) => {
                 JSON.stringify(selectedChapters)
               );
 
-
               localStorage.setItem(
                 "board",
                 board
               );
-
 
               localStorage.setItem(
                 "class",
                 studentClass
               );
 
-
               localStorage.setItem(
                 "subject",
                 subject
               );
-
 
               localStorage.setItem(
                 "paperType",
@@ -557,11 +630,33 @@ onChange={(e) => {
               );
 
               localStorage.setItem(
-                "testName",
-                testName
+                "mode",
+                mode
               );
 
-              router.push("/chapters");
+              localStorage.setItem(
+                "count",
+                String(count)
+              );
+
+              if (mode === "auto") {
+                const filtered = getFilteredQuestions();
+                if (filtered.length === 0) {
+                  alert(
+                    "No questions match the selected filters. Please adjust your board, class, subject, or chapter selections."
+                  );
+                  return;
+                }
+                const generated = shuffle(filtered).slice(0, count);
+                localStorage.setItem(
+                  "generatedQuestions",
+                  JSON.stringify(generated)
+                );
+              } else {
+                localStorage.removeItem("generatedQuestions");
+              }
+
+              router.push("/builders");
 
 
             }}

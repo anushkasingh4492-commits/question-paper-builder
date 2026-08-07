@@ -1,4 +1,7 @@
+@import url("https://fonts.googleapis.com/css2?family=Source+Serif+4:wght@400;500;600;700&family=Work+Sans:wght@400;500;600;700&display=swap");
 @import "tailwindcss";
+@import "../styles.css";
+
 :root{
   --brand:#6f2332;
   --brand-dark:#5a1d2a;

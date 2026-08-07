@@ -1,0 +1,23 @@
+.pt-tabs {
+  display: flex;
+  gap: 0.35rem;
+  border-bottom: 1px solid var(--color-border);
+  padding-bottom: 0.4rem;
+}
+
+.pt-tab {
+  border: 0;
+  background: transparent;
+  color: var(--color-text-muted);
+  padding: 0.55rem 0.8rem;
+  border-radius: var(--radius-sm);
+  font-family: var(--font-ui);
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.pt-tab.active,
+.pt-tab[aria-selected="true"] {
+  background: rgba(122, 35, 59, 0.1);
+  color: var(--color-brand);
+}

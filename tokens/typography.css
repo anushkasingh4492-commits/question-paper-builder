@@ -1,0 +1,27 @@
+:root {
+  --font-serif: "Source Serif 4", "Iowan Old Style", "Palatino Linotype", serif;
+  --font-ui: "Work Sans", "Segoe UI", Arial, sans-serif;
+  --font-body: var(--font-serif);
+  --font-heading: var(--font-serif);
+  --font-label: var(--font-ui);
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-base: 1rem;
+  --text-lg: 1.125rem;
+  --text-xl: 1.25rem;
+  --text-2xl: 1.5rem;
+
+  --leading-relaxed: 1.7;
+  --leading-tight: 1.25;
+}
+
+body {
+  font-family: var(--font-body);
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: var(--font-heading);
+  color: var(--color-text);
+  letter-spacing: -0.01em;
+}

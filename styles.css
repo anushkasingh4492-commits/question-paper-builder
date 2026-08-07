@@ -1,0 +1,55 @@
+@import "./tokens/colors.css";
+@import "./tokens/typography.css";
+@import "./tokens/typography.css";
+@import "./tokens/spacing.css";
+@import "./components/core/button.css";
+@import "./components/core/card.css";
+@import "./components/core/badge.css";
+@import "./components/core/tag.css";
+@import "./components/forms/input.css";
+@import "./components/forms/select.css";
+@import "./components/forms/checkbox.css";
+@import "./components/forms/radio.css";
+@import "./components/forms/switch.css";
+@import "./components/feedback/toast.css";
+@import "./components/feedback/tooltip.css";
+@import "./components/feedback/dialog.css";
+@import "./components/navigation/tabs.css";
+
+:root {
+  color-scheme: light;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  margin: 0;
+  font-family: var(--font-body);
+  background: var(--color-paper-50);
+  color: var(--color-text);
+  line-height: var(--leading-relaxed);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: var(--color-brand);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+::selection {
+  background: rgba(122, 35, 59, 0.18);
+}

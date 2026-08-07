@@ -1,0 +1,60 @@
+.pt-button,
+.pt-button-primary,
+.pt-button-secondary,
+.pt-button-ghost,
+.pt-button-outline {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border: 1px solid transparent;
+  border-radius: var(--radius-md);
+  padding: 0.7rem 1rem;
+  font-family: var(--font-ui);
+  font-size: var(--text-sm);
+  font-weight: 600;
+  line-height: 1.2;
+  cursor: pointer;
+  transition: background-color var(--motion-fast), color var(--motion-fast), border-color var(--motion-fast), box-shadow var(--motion-fast);
+}
+
+.pt-button:hover,
+.pt-button-primary:hover,
+.pt-button-secondary:hover,
+.pt-button-outline:hover,
+.pt-button-ghost:hover {
+  filter: brightness(0.92);
+}
+
+.pt-button:active,
+.pt-button-primary:active,
+.pt-button-secondary:active,
+.pt-button-outline:active,
+.pt-button-ghost:active {
+  filter: brightness(0.88);
+}
+
+.pt-button,
+.pt-button-primary {
+  background: var(--color-brand);
+  color: var(--color-paper-0);
+  border-color: var(--color-brand);
+}
+
+.pt-button-secondary {
+  background: var(--color-accent-ochre);
+  color: var(--color-paper-0);
+  border-color: var(--color-accent-ochre);
+}
+
+.pt-button-outline,
+.pt-button-ghost {
+  background: var(--color-surface);
+  color: var(--color-brand);
+  border-color: var(--color-border);
+}
+
+.pt-button-ghost {
+  background: transparent;
+  border-color: transparent;
+}

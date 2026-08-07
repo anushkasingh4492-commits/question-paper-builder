@@ -1,0 +1,8 @@
+.pt-tooltip {
+  background: var(--color-text);
+  color: var(--color-paper-0);
+  border-radius: var(--radius-sm);
+  padding: 0.45rem 0.7rem;
+  font-family: var(--font-ui);
+  font-size: var(--text-xs);
+}

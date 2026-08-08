@@ -9,7 +9,6 @@ import {
   BookOpen,
   Folder,
   Settings,
-  Sparkles,
 } from "lucide-react";
 
 const menuItems = [
@@ -38,102 +37,72 @@ const menuItems = [
     icon: Folder,
     href: "/templates",
   },
-  {
-    title: "Settings",
-    icon: Settings,
-    href: "/settings",
-  },
-  {
-    title: "Design System",
-    icon: Sparkles,
-    href: "/design-system",
-  },
+  
 ];
 
 export default function Sidebar() {
   const pathname = usePathname();
 
   return (
-    <aside className="w-[248px] min-h-screen bg-[#fffdf9] border-r border-[#eadfce] flex flex-col fixed left-0 top-0">
-
+    <aside className="fixed left-0 top-0 z-40 flex h-screen w-[248px] flex-col border-r border-[var(--color-border)] bg-[var(--color-surface)]">
       {/* Logo */}
-      <div className="px-6 py-7">
+      <div className="flex items-center gap-3 border-b border-[var(--color-border)] px-5 py-5">
+        <img
+          src="/assets/logo.png"
+          alt="Paper Tree"
+          className="h-10 w-auto object-contain"
+        />
 
-        <div className="flex items-center gap-3">
-          <div className="w-11 h-11 rounded-xl bg-[#7b2140] flex items-center justify-center text-white font-bold text-xl">
-            P
-          </div>
+        <div>
+          <h1
+            className="text-lg font-semibold text-[var(--color-brand)]"
+            style={{ fontFamily: "Source Serif 4, serif" }}
+          >
+            Paper Tree
+          </h1>
 
-          <div>
-            <h1
-              className="text-xl font-semibold text-[#7b2140]"
-              style={{
-                fontFamily: "Source Serif 4, serif",
-              }}
-            >
-              Paper Tree
-            </h1>
-
-            <p className="text-xs text-[#75685d]">
-              Test Generator
-            </p>
-          </div>
+          <p className="text-xs text-[var(--color-text-muted)]">
+            Test Generator
+          </p>
         </div>
-
       </div>
 
-
-      {/* Menu */}
-      <nav className="flex-1 px-4 space-y-2">
-
+      {/* Navigation */}
+      <nav className="flex-1 space-y-1 px-2 py-3">
         {menuItems.map((item) => {
-
           const Icon = item.icon;
 
           const active =
-            pathname === item.href;
+            pathname === item.href ||
+            (item.href !== "/dashboard" &&
+              pathname.startsWith(`${item.href}/`));
 
           return (
             <Link
               key={item.title}
               href={item.href}
-              className={`
-                flex items-center gap-3
-                px-4 py-3
-                rounded-xl
-                transition-all
-                ${
-                  active
-                  ? "bg-[#7b2140] text-white"
-                  : "text-[#4b4b4b] hover:bg-[#f5eee4]"
-                }
-              `}
+              className={`flex items-center gap-3 rounded-[8px] px-3 py-2.5 text-sm transition-colors duration-150 ${
+                active
+                  ? "bg-[var(--color-brand)] text-white"
+                  : "text-[var(--color-text)] hover:bg-[var(--color-paper-50)]"
+              }`}
             >
-
-              <Icon size={20}/>
+              <Icon size={18} strokeWidth={1.7} />
 
               <span className="font-medium">
                 {item.title}
               </span>
-
             </Link>
           );
-
         })}
-
       </nav>
 
-
       {/* Footer */}
-      <div className="px-4 py-5 border-t border-[#eadfce]">
-
-        <p className="text-xs text-[#9b8d80] px-4">
+      <div className="border-t border-[var(--color-border)] px-4 py-4">
+        <p className="text-xs leading-relaxed text-[var(--color-text-muted)]">
           Assessment Creation Tool
         </p>
-
       </div>
-
-
     </aside>
   );
 }

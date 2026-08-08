@@ -673,7 +673,7 @@ const downloadDOCX = async () => {
 
       <hr className="mt-10 mb-4" />
 
-      <div className="flex justify-between text-gray-500">
+      <div className="flex justify-between var(--color-text-muted)500">
         <span>{template.footer}</span>
 
         {template.showPageNumbers && <span>Page 1</span>}
@@ -683,7 +683,7 @@ const downloadDOCX = async () => {
       <div className="flex gap-4 mt-8">
         <button
           onClick={() => window.print()}
-          className="bg-blue-600 text-white px-5 py-2 rounded"
+          className="bg-[#7a233b]600 text-white px-5 py-2 rounded"
         >
           Print Paper
         </button>
@@ -704,7 +704,7 @@ const downloadDOCX = async () => {
 
         <button
           onClick={downloadDOCX}
-          className="bg-blue-800 text-white px-5 py-2 rounded"
+          className="bg-[#7a233b]800 text-white px-5 py-2 rounded"
         >
           Download DOCX
         </button>

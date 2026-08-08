@@ -29,7 +29,7 @@ export default function HeaderItem({
       style={style}
       {...attributes}
       {...listeners}
-      className="border rounded-lg p-3 bg-white mb-2 cursor-move shadow-sm hover:bg-blue-50"
+      className="border rounded-lg p-3 bg-white mb-2 cursor-move shadow-sm hover:bg-[#7a233b]50"
     >
       ☰ {children}
     </div>

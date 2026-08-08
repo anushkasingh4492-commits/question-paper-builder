@@ -62,7 +62,7 @@ export default function SubscriptionPage() {
           Course Subscriptions
         </h1>
 
-        <p className="text-gray-500 mb-8">
+        <p className="var(--color-text-muted)500 mb-8">
           Select which courses the user can access.
         </p>
 
@@ -79,7 +79,7 @@ export default function SubscriptionPage() {
             {courses.slice(0, 3).map((course, index) => (
               <label
                 key={`${course}-${index}`}
-                className="flex items-center justify-between border rounded-xl p-4 hover:bg-blue-50 cursor-pointer"
+                className="flex items-center justify-between border rounded-xl p-4 hover:bg-[#7a233b]50 cursor-pointer"
               >
                 <span>{course}</span>
 
@@ -128,7 +128,7 @@ export default function SubscriptionPage() {
 
         <button
           onClick={saveCourses}
-          className="mt-10 bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-xl"
+          className="mt-10 bg-[#7a233b]600 hover:bg-[#7a233b]700 text-white px-8 py-3 rounded-xl"
         >
           Save Subscriptions
         </button>

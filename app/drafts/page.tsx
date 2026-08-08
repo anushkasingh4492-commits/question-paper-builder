@@ -60,7 +60,7 @@ export default function DraftsPage() {
                 {draft.paperTitle}
               </h2>
 
-              <p className="text-gray-500">
+              <p className="var(--color-text-muted)500">
                 {draft.subjectName}
               </p>
             </div>
@@ -69,7 +69,7 @@ export default function DraftsPage() {
 
               <button
                 onClick={() => openDraft(draft)}
-                className="bg-blue-600 text-white px-4 py-2 rounded"
+                className="bg-[#7a233b]600 text-white px-4 py-2 rounded"
               >
                 Open
               </button>

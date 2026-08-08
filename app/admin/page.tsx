@@ -43,7 +43,7 @@ export default function AdminPage() {
             Admin Panel
           </h1>
 
-          <p className="text-gray-500 mt-2">
+          <p className="var(--color-text-muted)500 mt-2">
             Manage datasets, courses, subjects and users.
           </p>
         </div>
@@ -53,13 +53,13 @@ export default function AdminPage() {
             <Link
               key={card.title}
               href={card.href}
-              className="border rounded-xl p-6 hover:bg-blue-50 transition"
+              className="border rounded-xl p-6 hover:bg-[#7a233b]50 transition"
             >
               <h2 className="text-xl font-semibold">
                 {card.title}
               </h2>
 
-              <p className="text-gray-500 mt-2">
+              <p className="var(--color-text-muted)500 mt-2">
                 {card.description}
               </p>
             </Link>

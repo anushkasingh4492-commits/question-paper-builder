@@ -52,8 +52,8 @@ export default function PaperCanvas({
       ref={setNodeRef}
       className={`min-h-[650px] rounded-xl border-2 border-dashed p-5 transition ${
         isOver
-          ? "border-blue-600 bg-blue-50"
-          : "border-gray-300"
+          ? "border-blue-600 bg-[#7a233b]50"
+          : "var(--color-border)-300"
       }`}
     >
      <div
@@ -90,13 +90,13 @@ export default function PaperCanvas({
     <span>Total Marks: {totalMarks}</span>
   </div>
 
-  <div className="mt-4 text-left whitespace-pre-line text-gray-700">
+  <div className="mt-4 text-left whitespace-pre-line var(--color-text-muted)700">
     {instructions}
   </div>
 </div>
 
       {questions.length === 0 && (
-        <div className="text-center text-gray-400 mt-24">
+        <div className="text-center var(--color-text-muted)400 mt-24">
           Drag questions here
         </div>
       )}
@@ -114,7 +114,7 @@ export default function PaperCanvas({
               className={`rounded-xl border p-5 mb-5 transition-all ${
                 orTarget?.id === q.id
                   ? "border-orange-500 bg-orange-50 shadow-lg"
-                  : "border-gray-300 bg-white"
+                  : "var(--color-border)-300 bg-white"
               }`}
             >
               {/* Header */}
@@ -139,7 +139,7 @@ export default function PaperCanvas({
     Marks: {(q as any).marks ?? (q as any).mark}
   </div>
 )}
-                  <p className="text-sm text-gray-500 mt-1">
+                  <p className="text-sm var(--color-text-muted)500 mt-1">
                     {q.subject} • {q.chapter.title}
                   </p>
                 </div>
@@ -190,7 +190,7 @@ export default function PaperCanvas({
                           {orQ.stem}
                         </div>
 
-                        <div className="mt-2 text-sm text-gray-500">
+                        <div className="mt-2 text-sm var(--color-text-muted)500">
                           {orQ.subject} • {orQ.chapter.title}
                         </div>
                       </div>
@@ -203,7 +203,7 @@ export default function PaperCanvas({
       </SortableContext>
       <hr className="mt-8 mb-3" />
 
-<div className="flex justify-between text-sm text-gray-500">
+<div className="flex justify-between text-sm var(--color-text-muted)500">
   <span>{template.footer}</span>
 
   {template.showPageNumbers && (

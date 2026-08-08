@@ -13,7 +13,7 @@ export default function DatasetPage() {
             Dataset Manager
           </h1>
 
-          <p className="text-gray-500">
+          <p className="var(--color-text-muted)500">
             View and manage uploaded datasets.
           </p>
         </div>
@@ -45,7 +45,7 @@ export default function DatasetPage() {
     <tr>
       <td
         colSpan={6}
-        className="p-6 text-center text-gray-500"
+        className="p-6 text-center var(--color-text-muted)500"
       >
         No datasets uploaded yet.
       </td>
@@ -78,7 +78,7 @@ export default function DatasetPage() {
 
         <td className="p-3 space-x-2">
 
-          <button className="px-3 py-1 bg-blue-600 text-white rounded">
+          <button className="px-3 py-1 bg-[#7a233b]600 text-white rounded">
             View
           </button>
 

@@ -63,13 +63,16 @@ setPresets(presets);
 }
   return (
     <DashboardLayout>
-      <div className="bg-white rounded-xl shadow-lg p-8">
+      <div className="rounded-[14px] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-[var(--shadow-card)]">
 
-        <h1 className="text-3xl font-bold mb-2">
+        <h1
+          style={{ fontFamily: "Source Serif 4, serif" }}
+          className="text-3xl font-bold mb-2 text-[var(--color-text)]"
+        >
           Customize Template
         </h1>
 
-        <p className="text-gray-500 mb-8">
+        <p className="text-[var(--color-text-muted)] mb-8">
           Personalize your default question paper template.
         </p>
 
@@ -82,12 +85,12 @@ setPresets(presets);
             {/* School Name */}
 
             <div>
-              <label className="font-medium block mb-2">
+              <label className="font-medium block mb-2 text-[var(--color-text)]">
                 School Name
               </label>
 
               <input
-                className="border rounded-lg w-full p-3"
+                className="w-full rounded-[8px] border border-[var(--color-border)] bg-[var(--color-paper-0)] p-3 text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-brand)]"
                 value={template.schoolName}
                 onChange={(e) =>
                   setTemplate({
@@ -145,7 +148,7 @@ setPresets(presets);
 
   <input
     type="color"
-    className="mt-4"
+    className="mt-4 w-full rounded-[8px] border border-[var(--color-border)] bg-[var(--color-paper-0)] p-3 text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-brand)]"
     value={template.headerColor}
     onChange={(e) =>
       setTemplate({
@@ -156,7 +159,7 @@ setPresets(presets);
   />
 
   <input
-    className="border rounded-lg p-3 mt-3 w-full"
+    className="w-full rounded-[8px] border border-[var(--color-border)] bg-[var(--color-paper-0)] p-3 text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-brand)] mt-3"
     placeholder="#2563EB"
     value={template.headerColor}
     onChange={(e) =>
@@ -178,7 +181,7 @@ setPresets(presets);
               </label>
 
               <select
-                className="border rounded-lg w-full p-3"
+                className="w-full rounded-[8px] border border-[var(--color-border)] bg-[var(--color-paper-0)] p-3 text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-brand)]"
                 value={template.fontFamily}
                 onChange={(e) =>
                   setTemplate({
@@ -252,7 +255,7 @@ setPresets(presets);
               </label>
 
               <select
-                className="border rounded-lg w-full p-3"
+                className="w-full rounded-[8px] border border-[var(--color-border)] bg-[var(--color-paper-0)] p-3 text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-brand)]"
                 value={template.spacing}
                 onChange={(e) =>
                   setTemplate({
@@ -275,7 +278,7 @@ setPresets(presets);
               </label>
 
               <select
-                className="border rounded-lg w-full p-3"
+                className="w-full rounded-[8px] border border-[var(--color-border)] bg-[var(--color-paper-0)] p-3 text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-brand)]"
                 value={template.margin}
                 onChange={(e) =>
                   setTemplate({
@@ -298,7 +301,7 @@ setPresets(presets);
               </label>
 
               <input
-                className="border rounded-lg w-full p-3"
+                className="w-full rounded-[8px] border border-[var(--color-border)] bg-[var(--color-paper-0)] p-3 text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-brand)]"
                 value={template.footer}
                 onChange={(e) =>
                   setTemplate({
@@ -343,14 +346,17 @@ setPresets(presets);
 
             </div>
 
-<div className="mt-8 border-t pt-6">
+<div className="mt-8 border-t border-[var(--color-border)] pt-6">
 
-  <h2 className="text-2xl font-bold mb-4">
+  <h2
+    style={{ fontFamily: "Source Serif 4, serif" }}
+    className="text-2xl font-bold mb-4 text-[var(--color-text)]"
+  >
     Saved Presets
   </h2>
 
   <select
-    className="w-full border rounded-lg p-3"
+    className="w-full rounded-[8px] border border-[var(--color-border)] bg-[var(--color-paper-0)] p-3 text-sm text-[var(--color-text)] outline-none transition-colors focus:border-[var(--color-brand)]"
     defaultValue=""
     onChange={(e) => {
       const preset = presets.find(
@@ -380,7 +386,7 @@ setPresets(presets);
   </select>
 
   <button
-    className="mt-4 bg-red-600 text-white px-4 py-2 rounded-lg"
+    className="mt-4 rounded-[8px] border border-[var(--color-board-tag)] px-4 py-2 text-sm font-medium text-[var(--color-board-tag)] transition-colors hover:bg-[var(--color-board-tag)] hover:text-white"
     onClick={() => {
       const name = prompt("Enter preset name to delete");
 
@@ -406,7 +412,7 @@ setPresets(presets);
 </div>
             <button
               onClick={saveTemplate}
-              className="bg-blue-600 hover:bg-blue-700 text-white px-8 py-3 rounded-lg"
+              className="bg-[var(--color-brand)] hover:bg-[var(--color-brand-dark)] text-white px-8 py-3 rounded-[8px]"
             >
               Save Template
             </button>
@@ -415,7 +421,7 @@ setPresets(presets);
 
           {/* Preview */}
 
-          <div className="border rounded-xl p-8 bg-gray-50">
+          <div className="rounded-[14px] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-[var(--shadow-card)]">
 
             <div
               style={{

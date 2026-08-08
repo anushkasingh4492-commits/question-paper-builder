@@ -103,7 +103,7 @@ const [selectedChapters, setSelectedChapters] = useState<string[]>(
           Select Chapters
         </h1>
 
-        <p className="text-gray-500 mb-8">
+        <p className="var(--color-text-muted)500 mb-8">
           Choose chapters for the paper
         </p>
 
@@ -179,8 +179,8 @@ const [selectedChapters, setSelectedChapters] = useState<string[]>(
 
                   ${
                     active
-                      ? "bg-blue-600 text-white border-blue-600"
-                      : "bg-white hover:bg-blue-50"
+                      ? "bg-[#7a233b]600 text-white border-blue-600"
+                      : "bg-white hover:bg-[#7a233b]50"
                   }`}
                 >
                   {chapter}
@@ -210,7 +210,7 @@ const [selectedChapters, setSelectedChapters] = useState<string[]>(
 
     router.push("/builders");
   }}
-  className="bg-blue-600 text-white px-8 py-3 rounded-lg hover:bg-blue-700"
+  className="bg-[#7a233b]600 text-white px-8 py-3 rounded-lg hover:bg-[#7a233b]700"
 >
   Continue →
 </button>

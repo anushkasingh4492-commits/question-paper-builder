@@ -113,6 +113,25 @@ console.log("OR TARGET:", orTarget);
     setTemplate(draft.template);
     setPaperQuestions(draft.paperQuestions);
   }
+  const bankSelection = JSON.parse(
+  localStorage.getItem("questionBankSelection") || "null"
+);
+
+if (Array.isArray(bankSelection)) {
+  setPaperQuestions((prev) => {
+    const existingIds = new Set(
+      prev.map((q) => q.id)
+    );
+
+    const newQuestions = bankSelection.filter(
+      (q: Question) => !existingIds.has(q.id)
+    );
+
+    return [...prev, ...newQuestions];
+  });
+
+  localStorage.removeItem("questionBankSelection");
+}
 }, []);
 const [template, setTemplate] = useState({
   schoolName: "ABC Public School",
@@ -477,7 +496,7 @@ Paper Builder
 
 </h1>
 
-<p className="text-gray-600 mt-2">
+<p className="var(--color-text-muted)600 mt-2">
 
 Create your paper by dragging questions.
 
@@ -649,7 +668,7 @@ disabled={page===totalPages}
 
 onClick={()=>setPage(page+1)}
 
-className="bg-blue-600 text-white px-4 py-2 rounded disabled:opacity-40"
+className="bg-[#7a233b]600 text-white px-4 py-2 rounded disabled:opacity-40"
 
 >
 
@@ -758,7 +777,7 @@ onChange={(e)=>setTotalMarks(Number(e.target.value))}
 <div className="mt-5">
 
 <button
-className="bg-blue-600 text-white px-4 py-2 rounded"
+className="bg-[#7a233b]600 text-white px-4 py-2 rounded"
 onClick={()=>{
 localStorage.setItem(
 "paperPreset",

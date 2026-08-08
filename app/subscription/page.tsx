@@ -1,7 +1,9 @@
+
 "use client";
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { Check, ArrowRight } from "lucide-react";
 
 const subscriptionData = [
   {
@@ -69,61 +71,107 @@ export default function SubscriptionPage() {
   };
 
   return (
-    <div className="min-h-screen bg-slate-100 p-10">
-      <div className="max-w-6xl mx-auto">
+    <main className="min-h-screen bg-[var(--color-paper-50)] px-6 py-10">
+      <div className="mx-auto max-w-6xl">
 
-        <div className="text-center mb-10">
-          <h1 className="text-5xl font-bold">
-            Choose Your Subscription
+        {/* Header */}
+        <div className="mb-10 text-center">
+          <div className="mb-5 flex justify-center">
+            <div className="flex h-14 w-14 items-center justify-center">
+              <img
+                src="/logo.png"
+                alt="Paper Tree"
+                className="h-14 w-14 object-contain"
+              />
+            </div>
+          </div>
+
+          <h1
+            className="text-4xl font-semibold text-[var(--color-brand)] sm:text-5xl"
+            style={{ fontFamily: "Source Serif 4, serif" }}
+          >
+            Choose your subscription
           </h1>
 
-          <p className="text-gray-500 mt-3">
+          <p className="mt-3 text-sm text-[var(--color-text-muted)]">
             Select every course you want access to.
           </p>
         </div>
 
-        <div className="grid md:grid-cols-2 gap-8">
-        {subscriptionData.map((section) => (
-          <div
-            key={section.title}
-            className="bg-white rounded-2xl shadow-lg p-6"
+        {/* Course sections */}
+        <div className="grid gap-6 md:grid-cols-2">
+          {subscriptionData.map((section) => (
+            <section
+              key={section.title}
+              className="rounded-[14px] border border-[var(--color-border)] bg-[var(--color-surface)] p-6 shadow-[var(--shadow-card)]"
+            >
+              <h2
+                className="mb-5 text-2xl font-semibold text-[var(--color-text)]"
+                style={{ fontFamily: "Source Serif 4, serif" }}
+              >
+                {section.title}
+              </h2>
+
+              <div className="space-y-2">
+                {section.items.map((course) => {
+                  const selected = selectedCourses.includes(course);
+
+                  return (
+                    <label
+                      key={course}
+                      className={`flex cursor-pointer items-center justify-between rounded-[8px] border px-4 py-3 transition-colors duration-150 ${
+                        selected
+                          ? "border-[var(--color-brand)] bg-[var(--color-paper-50)]"
+                          : "border-[var(--color-border)] hover:bg-[var(--color-paper-50)]"
+                      }`}
+                    >
+                      <span className="text-sm font-medium text-[var(--color-text)]">
+                        {course}
+                      </span>
+
+                      <span
+                        className={`flex h-5 w-5 items-center justify-center rounded-[4px] border transition-colors duration-150 ${
+                          selected
+                            ? "border-[var(--color-brand)] bg-[var(--color-brand)] text-white"
+                            : "border-[var(--color-border-strong)] bg-[var(--color-surface)]"
+                        }`}
+                      >
+                        {selected && (
+                          <Check
+                            size={14}
+                            strokeWidth={2.5}
+                          />
+                        )}
+
+                        <input
+                          type="checkbox"
+                          checked={selected}
+                          onChange={() => toggleCourse(course)}
+                          className="sr-only"
+                        />
+                      </span>
+                    </label>
+                  );
+                })}
+              </div>
+            </section>
+          ))}
+        </div>
+
+        {/* Save */}
+        <div className="mt-8 flex justify-center">
+          <button
+            type="button"
+            onClick={saveSubscription}
+            className="flex items-center gap-2 rounded-[8px] bg-[var(--color-brand)] px-8 py-3.5 text-sm font-semibold text-white transition-colors duration-150 hover:bg-[var(--color-brand-dark)]"
           >
-            <h2 className="text-2xl font-bold mb-5">
-              {section.title}
-            </h2>
+            Save subscription
+            <ArrowRight size={18} strokeWidth={2} />
+          </button>
+        </div>
 
-            <div className="space-y-3">
-              {section.items.map((course) => (
-                <label
-                  key={course}
-                  className="flex items-center justify-between border rounded-xl p-4 cursor-pointer hover:bg-blue-50 transition"
-                >
-                  <div>
-                    <p className="font-semibold">{course}</p>
-                  </div>
-
-                  <input
-                    type="checkbox"
-                    checked={selectedCourses.includes(course)}
-                    onChange={() => toggleCourse(course)}
-                    className="w-5 h-5"
-                  />
-                </label>
-              ))}
-            </div>
-          </div>
-        ))}
       </div>
-
-      <div className="mt-10 flex justify-center">
-        <button
-          onClick={saveSubscription}
-          className="bg-blue-600 hover:bg-blue-700 text-white font-bold px-10 py-4 rounded-xl text-lg transition"
-        >
-          Save Subscription
-        </button>
-      </div>
-            </div>
-    </div>
+    </main>
   );
 }
+

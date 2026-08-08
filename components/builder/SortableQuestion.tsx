@@ -35,7 +35,7 @@ export default function SortableQuestion({
       {/* Drag handle */}
       <div
         {...listeners}
-        className="cursor-grab select-none text-gray-400 mb-2"
+        className="cursor-grab select-none var(--color-text-muted)400 mb-2"
       >
         ☰ Drag
       </div>

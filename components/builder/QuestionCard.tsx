@@ -49,7 +49,7 @@ export default function QuestionCard({
       className="border rounded-xl bg-white p-4 shadow-sm cursor-grab active:cursor-grabbing hover:shadow-md transition"
     >
       <div className="flex justify-between items-center">
-        <div className="text-xs text-gray-500">
+        <div className="text-xs var(--color-text-muted)500">
           {question.subject || "Unknown"} •{" "}
           Chapter {question.chapter?.number ?? "-"}
         </div>

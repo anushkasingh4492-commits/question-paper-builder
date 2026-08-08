@@ -1,3 +1,4 @@
+
 "use client";
 
 interface Props {
@@ -6,11 +7,12 @@ interface Props {
 
 export default function ChapterSelector({ chapters }: Props) {
   return (
-    <div className="grid grid-cols-2 md:grid-cols-3 gap-3 mt-4">
+    <div className="mt-4 grid grid-cols-2 gap-3 md:grid-cols-3">
       {chapters.map((chapter) => (
         <button
           key={chapter}
-          className="border rounded-lg p-3 hover:bg-blue-100"
+          type="button"
+          className="rounded-[8px] border border-[var(--color-border)] bg-[var(--color-surface)] p-3 text-left text-sm text-[var(--color-text)] transition-colors duration-150 hover:border-[var(--color-brand)] hover:bg-[var(--color-paper-50)]"
         >
           {chapter}
         </button>
@@ -18,3 +20,4 @@ export default function ChapterSelector({ chapters }: Props) {
     </div>
   );
 }
+

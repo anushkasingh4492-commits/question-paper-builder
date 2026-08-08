@@ -20,7 +20,7 @@ const [subject, setSubject] = useState("");
           Upload Dataset
         </h1>
 
-        <p className="text-gray-500">
+        <p className="var(--color-text-muted)500">
           Upload JSON question banks for any course, class and subject.
         </p>
 
@@ -134,7 +134,7 @@ const [subject, setSubject] = useState("");
           </div>
 
          <button
-  className="bg-blue-600 text-white px-6 py-3 rounded-lg"
+  className="bg-[#7a233b]600 text-white px-6 py-3 rounded-lg"
   disabled={!dataset}
   onClick={async () => {
     const res = await fetch("/api/datasets/upload", {
